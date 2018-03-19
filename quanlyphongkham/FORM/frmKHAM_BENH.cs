@@ -1844,7 +1844,6 @@ namespace quanlyphongkham.FORM
             tt.lbHuyetap2.Text = txtHuyetap2.Text;
             tt.lbMaPhieu.Text = txtSoPCD.Text;
 
-
             tt.DataSource = gcCTPCD.DataSource;
             tt.BindData();
             //printControl1.PrintingSystem = tt.PrintingSystem;
@@ -1887,7 +1886,6 @@ namespace quanlyphongkham.FORM
                     gdPTNH.Enabled = true;
                     pnCDCLS.Enabled = false;
                     pnLSK.Enabled = false;
-
                 }
             }
         }

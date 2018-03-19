@@ -473,9 +473,9 @@
             // 
             this.pnTong.Controls.Add(this.tabControl);
             this.pnTong.Dock = System.Windows.Forms.DockStyle.Right;
-            this.pnTong.Location = new System.Drawing.Point(69, 21);
+            this.pnTong.Location = new System.Drawing.Point(69, 20);
             this.pnTong.Name = "pnTong";
-            this.pnTong.Size = new System.Drawing.Size(790, 577);
+            this.pnTong.Size = new System.Drawing.Size(790, 578);
             this.pnTong.TabIndex = 85;
             // 
             // tabControl
@@ -484,7 +484,7 @@
             this.tabControl.Location = new System.Drawing.Point(0, 0);
             this.tabControl.Name = "tabControl";
             this.tabControl.SelectedTabPage = this.tabKB;
-            this.tabControl.Size = new System.Drawing.Size(790, 577);
+            this.tabControl.Size = new System.Drawing.Size(790, 578);
             this.tabControl.TabIndex = 0;
             this.tabControl.TabPages.AddRange(new DevExpress.XtraTab.XtraTabPage[] {
             this.tabKB,
@@ -496,7 +496,7 @@
             // 
             this.tabKB.Controls.Add(this.pnKB);
             this.tabKB.Name = "tabKB";
-            this.tabKB.Size = new System.Drawing.Size(784, 549);
+            this.tabKB.Size = new System.Drawing.Size(788, 553);
             this.tabKB.Text = "Khám bệnh";
             // 
             // pnKB
@@ -541,7 +541,7 @@
             this.pnKB.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pnKB.Location = new System.Drawing.Point(0, 0);
             this.pnKB.Name = "pnKB";
-            this.pnKB.Size = new System.Drawing.Size(784, 549);
+            this.pnKB.Size = new System.Drawing.Size(788, 553);
             this.pnKB.TabIndex = 30;
             // 
             // DateTK
@@ -1158,7 +1158,7 @@
             // 
             this.tabKT.Controls.Add(this.pnTT);
             this.tabKT.Name = "tabKT";
-            this.tabKT.Size = new System.Drawing.Size(784, 549);
+            this.tabKT.Size = new System.Drawing.Size(784, 550);
             this.tabKT.Text = "Kê toa";
             this.tabKT.Paint += new System.Windows.Forms.PaintEventHandler(this.tabKT_Paint);
             // 
@@ -1179,7 +1179,7 @@
             this.pnTT.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pnTT.Location = new System.Drawing.Point(0, 0);
             this.pnTT.Name = "pnTT";
-            this.pnTT.Size = new System.Drawing.Size(784, 549);
+            this.pnTT.Size = new System.Drawing.Size(784, 550);
             this.pnTT.TabIndex = 88;
             // 
             // panelTT
@@ -1899,7 +1899,7 @@
             // 
             this.tabCLS.Controls.Add(this.pnCDCLS);
             this.tabCLS.Name = "tabCLS";
-            this.tabCLS.Size = new System.Drawing.Size(784, 549);
+            this.tabCLS.Size = new System.Drawing.Size(784, 550);
             this.tabCLS.Text = "Chỉ định";
             // 
             // pnCDCLS
@@ -1923,7 +1923,7 @@
             this.pnCDCLS.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pnCDCLS.Location = new System.Drawing.Point(0, 0);
             this.pnCDCLS.Name = "pnCDCLS";
-            this.pnCDCLS.Size = new System.Drawing.Size(784, 549);
+            this.pnCDCLS.Size = new System.Drawing.Size(784, 550);
             this.pnCDCLS.TabIndex = 4;
             // 
             // btnInPCD
@@ -2347,7 +2347,7 @@
             // 
             this.tabLS.Controls.Add(this.pnLSK);
             this.tabLS.Name = "tabLS";
-            this.tabLS.Size = new System.Drawing.Size(784, 549);
+            this.tabLS.Size = new System.Drawing.Size(784, 550);
             this.tabLS.Text = "Lịch sử khám";
             // 
             // pnLSK
@@ -2360,7 +2360,7 @@
             this.pnLSK.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pnLSK.Location = new System.Drawing.Point(0, 0);
             this.pnLSK.Name = "pnLSK";
-            this.pnLSK.Size = new System.Drawing.Size(784, 549);
+            this.pnLSK.Size = new System.Drawing.Size(784, 550);
             this.pnLSK.TabIndex = 4;
             // 
             // btnSDL_LSK
@@ -2391,7 +2391,7 @@
             // 
             this.tabLSK_TT.Controls.Add(this.gcTT_LSK);
             this.tabLSK_TT.Name = "tabLSK_TT";
-            this.tabLSK_TT.Size = new System.Drawing.Size(765, 157);
+            this.tabLSK_TT.Size = new System.Drawing.Size(769, 160);
             this.tabLSK_TT.Text = "TOA THUỐC";
             // 
             // gcTT_LSK
@@ -2400,7 +2400,7 @@
             this.gcTT_LSK.Location = new System.Drawing.Point(0, 0);
             this.gcTT_LSK.MainView = this.gridView11;
             this.gcTT_LSK.Name = "gcTT_LSK";
-            this.gcTT_LSK.Size = new System.Drawing.Size(765, 157);
+            this.gcTT_LSK.Size = new System.Drawing.Size(769, 160);
             this.gcTT_LSK.TabIndex = 1;
             this.gcTT_LSK.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridView11});
