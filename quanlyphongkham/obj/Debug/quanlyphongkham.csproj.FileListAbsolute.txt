@@ -206,3 +206,4 @@ D:\THUVIEC_QLPK\qlpktn\quanlyphongkham\quanlyphongkham\bin\Debug\ru\DevExpress.D
 D:\THUVIEC_QLPK\qlpktn\quanlyphongkham\quanlyphongkham\obj\Debug\quanlyphongkham.Report.rptToaThuoc.resources
 D:\THUVIEC_QLPK\qlpktn\quanlyphongkham\quanlyphongkham\obj\Debug\quanlyphongkham.FORM.frmDANG_NHAP.resources
 D:\THUVIEC_QLPK\qlpktn\quanlyphongkham\quanlyphongkham\obj\Debug\quanlyphongkham.Report.rptPCD_CLS.resources
+D:\THUVIEC_QLPK\qlpktn\quanlyphongkham\quanlyphongkham\bin\Debug\DevExpress.BonusSkins.v17.1.dll

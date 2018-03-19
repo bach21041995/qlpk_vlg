@@ -36,9 +36,9 @@ namespace quanlyphongkham.DAO
                 conn.Close();
                 return result > 0;
             }
-            catch (SqlException e)
+            catch
             {
-                MessageBox.Show(e.ToString());
+                MessageBox.Show("Đã tồn tài tên cận lâm sàn");
                 return false;
             }
 

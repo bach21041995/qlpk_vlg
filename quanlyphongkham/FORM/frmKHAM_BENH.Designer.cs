@@ -179,7 +179,6 @@
             this.gridView2 = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.gridColumn9 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn10 = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.btnLuuPCD = new DevExpress.XtraEditors.SimpleButton();
             this.txtSoPCD = new System.Windows.Forms.TextBox();
             this.pnDMCLS = new System.Windows.Forms.Panel();
             this.cbLCLS = new System.Windows.Forms.ComboBox();
@@ -337,6 +336,7 @@
             this.gridColumn13 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn23 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn32 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn87 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.cbTT = new System.Windows.Forms.ComboBox();
             this.label4 = new System.Windows.Forms.Label();
             this.txtTimKiem = new DevExpress.XtraEditors.TextEdit();
@@ -459,10 +459,10 @@
             // 
             // groupControl1
             // 
-            this.groupControl1.Controls.Add(this.panel1);
             this.groupControl1.Controls.Add(this.pnTong);
             this.groupControl1.Controls.Add(this.pnButton);
             this.groupControl1.Controls.Add(this.panelBL);
+            this.groupControl1.Controls.Add(this.panel1);
             this.groupControl1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.groupControl1.Location = new System.Drawing.Point(0, 0);
             this.groupControl1.Name = "groupControl1";
@@ -1907,7 +1907,6 @@
             this.pnCDCLS.Controls.Add(this.btnInPCD);
             this.pnCDCLS.Controls.Add(this.btnThemCLS);
             this.pnCDCLS.Controls.Add(this.panelControl2);
-            this.pnCDCLS.Controls.Add(this.btnLuuPCD);
             this.pnCDCLS.Controls.Add(this.txtSoPCD);
             this.pnCDCLS.Controls.Add(this.pnDMCLS);
             this.pnCDCLS.Controls.Add(this.btnLapPCD);
@@ -1931,7 +1930,7 @@
             // 
             this.btnInPCD.ButtonStyle = DevExpress.XtraEditors.Controls.BorderStyles.Simple;
             this.btnInPCD.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnInPCD.ImageOptions.Image")));
-            this.btnInPCD.Location = new System.Drawing.Point(478, 426);
+            this.btnInPCD.Location = new System.Drawing.Point(409, 426);
             this.btnInPCD.Name = "btnInPCD";
             this.btnInPCD.Size = new System.Drawing.Size(103, 35);
             this.btnInPCD.TabIndex = 68;
@@ -1942,7 +1941,7 @@
             // 
             this.btnThemCLS.ButtonStyle = DevExpress.XtraEditors.Controls.BorderStyles.Simple;
             this.btnThemCLS.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnThemCLS.ImageOptions.Image")));
-            this.btnThemCLS.Location = new System.Drawing.Point(260, 426);
+            this.btnThemCLS.Location = new System.Drawing.Point(300, 426);
             this.btnThemCLS.Name = "btnThemCLS";
             this.btnThemCLS.Size = new System.Drawing.Size(103, 35);
             this.btnThemCLS.TabIndex = 67;
@@ -2034,16 +2033,6 @@
             this.gridColumn10.Visible = true;
             this.gridColumn10.VisibleIndex = 1;
             this.gridColumn10.Width = 449;
-            // 
-            // btnLuuPCD
-            // 
-            this.btnLuuPCD.ButtonStyle = DevExpress.XtraEditors.Controls.BorderStyles.Simple;
-            this.btnLuuPCD.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnLuuPCD.ImageOptions.Image")));
-            this.btnLuuPCD.Location = new System.Drawing.Point(369, 426);
-            this.btnLuuPCD.Name = "btnLuuPCD";
-            this.btnLuuPCD.Size = new System.Drawing.Size(103, 35);
-            this.btnLuuPCD.TabIndex = 66;
-            this.btnLuuPCD.Text = "Lưu";
             // 
             // txtSoPCD
             // 
@@ -2166,7 +2155,7 @@
             // 
             this.btnLapPCD.ButtonStyle = DevExpress.XtraEditors.Controls.BorderStyles.Simple;
             this.btnLapPCD.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnLapPCD.ImageOptions.Image")));
-            this.btnLapPCD.Location = new System.Drawing.Point(151, 426);
+            this.btnLapPCD.Location = new System.Drawing.Point(191, 426);
             this.btnLapPCD.Name = "btnLapPCD";
             this.btnLapPCD.Size = new System.Drawing.Size(103, 35);
             this.btnLapPCD.TabIndex = 65;
@@ -3343,6 +3332,7 @@
             this.btnHoantat.Size = new System.Drawing.Size(106, 35);
             this.btnHoantat.TabIndex = 2;
             this.btnHoantat.Text = "Hoàn tất";
+            this.btnHoantat.Click += new System.EventHandler(this.btnHoantat_Click);
             // 
             // btnHuy2
             // 
@@ -3410,7 +3400,8 @@
             this.gridColumn3,
             this.gridColumn13,
             this.gridColumn23,
-            this.gridColumn32});
+            this.gridColumn32,
+            this.gridColumn87});
             this.gridView3.GridControl = this.gdPTNH;
             this.gridView3.Name = "gridView3";
             this.gridView3.OptionsBehavior.Editable = false;
@@ -3621,6 +3612,12 @@
             this.gridColumn32.Caption = "Mã khám bệnh";
             this.gridColumn32.FieldName = "KB_ID";
             this.gridColumn32.Name = "gridColumn32";
+            // 
+            // gridColumn87
+            // 
+            this.gridColumn87.Caption = "Kết luận";
+            this.gridColumn87.FieldName = "KB_KETLUAN";
+            this.gridColumn87.Name = "gridColumn87";
             // 
             // cbTT
             // 
@@ -4000,7 +3997,6 @@
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn5;
         private DevExpress.XtraTab.XtraTabPage tabLS;
         private System.Windows.Forms.Panel pnCDCLS;
-        private DevExpress.XtraEditors.SimpleButton btnLuuPCD;
         private System.Windows.Forms.TextBox txtSoPCD;
         private System.Windows.Forms.Panel pnDMCLS;
         private System.Windows.Forms.ComboBox cbLCLS;
@@ -4119,5 +4115,6 @@
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn84;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn85;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn86;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn87;
     }
 }

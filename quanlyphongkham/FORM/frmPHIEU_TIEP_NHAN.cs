@@ -55,18 +55,27 @@ namespace quanlyphongkham.FORM
 
         void loadPTN_ALL()
         {
-            gdPTNH.DataSource = daoPTN.getDSPTN_ALL();
+            DateTime dt = Convert.ToDateTime(DateChonNgay.Text);
+            string ngay = dt.ToShortDateString();
+            ngay = ngay.Replace("/", "");
+            gdPTNH.DataSource = daoPTN.getDSPTN_ALL(ngay);
         }
 
 
         void loadPTN_DK()
         {
-            gdPTNH.DataSource = daoPTN.getDSPTN_DK();
+            DateTime dt = Convert.ToDateTime(DateChonNgay.Text);
+            string ngay = dt.ToShortDateString();
+            ngay = ngay.Replace("/", "");
+            gdPTNH.DataSource = daoPTN.getDSPTN_DK(ngay);
         }
 
         void loadPTN_KX()
         {
-            gdPTNH.DataSource = daoPTN.getDSPTN_KX();
+            DateTime dt = Convert.ToDateTime(DateChonNgay.Text);
+            string ngay = dt.ToShortDateString();
+            ngay = ngay.Replace("/", "");
+            gdPTNH.DataSource = daoPTN.getDSPTN_KX(ngay);
         }
 
 
@@ -287,7 +296,48 @@ namespace quanlyphongkham.FORM
             int tuoithang = int.Parse(txtTuoithang2.Text);
             int tuoinam = int.Parse(txtTuoinam2.Text);
             string ngaygio = System.DateTime.Now.ToShortDateString();
+            if(txtTuoinam2.Text == "")
+            {
+                txtTuoinam2.Text = "0";
+            }
+            if(txtTuoithang2.Text == "")
+            {
+                txtTuoithang2.Text = "0";
+            }
             //string ngaygio = DateNgayhen.Text;
+            if(txtMach.Text == "")
+            {
+                txtMach.Text = "0";
+            }
+            if(txtNhietdo.Text == "")
+            {
+                txtNhietdo.Text = "0";
+            }
+            if(txtNhiptho.Text == "")
+            {
+                txtNhiptho.Text = "0";
+            }
+            if(txtChieucao.Text == "")
+            {
+                txtChieucao.Text = "0";
+            }
+            if(txtHuyetap.Text == "")
+            {
+                txtHuyetap.Text = "0";
+            }
+            if(txtHuyetap2.Text == "")
+            {
+                txtHuyetap2.Text = "0";
+            }
+            if(txtCannang.Text == "")
+            {
+                txtCannang.Text = "0";
+            }
+            if(txtBMI.Text == "")
+            {
+                txtBMI.Text = "0";
+            }
+
             float mach = float.Parse(txtMach.Text);
             float nhietdo = float.Parse(txtNhietdo.Text);
             float nhiptho = float.Parse(txtNhiptho.Text);
@@ -343,7 +393,7 @@ namespace quanlyphongkham.FORM
                 ngay = ngay.Replace("/", "");
 
                 string ma = daoPTN.insertMaPTN(ngay);
-                MessageBox.Show(ma);
+                //MessageBox.Show(ma);
                 txtMa2.Text = ma;
                 string stt = txtMa2.Text.Substring(8);
                 txtSTT2.Text = stt;
@@ -668,7 +718,7 @@ namespace quanlyphongkham.FORM
                     {
                         if (daoPTN.InsertPTN(t))
                         {
-                            MessageBox.Show("Thêm thành công");
+                            //MessageBox.Show("Thêm thành công");
                             loadPTN();
                             //loadPTNH();
                             xuLyControl(false);
@@ -731,18 +781,86 @@ namespace quanlyphongkham.FORM
         {
             string s = txtTimKiem.Text;
 
+            DateTime dt = Convert.ToDateTime(DateChonNgay.Text);
+            string ngay = dt.ToShortDateString();
+            ngay = ngay.Replace("/", "");
+
+            DateTime ht = System.DateTime.Now;
+            string ngay2 = ht.ToShortDateString();
+            ngay2 = ngay2.Replace("/", "");
 
             if (s.Length > 0)
             {
-                gdPTNH.DataSource = daoPTN.TimPTN(s);
+                //gdPTNH.DataSource = daoPTN.TimPTN(s, ngay);
                 //gdPTN.DataSource = daoPTN.TimPTN(s);
                 //gcCLS.DataSource = daoCLS.TimCLS(s);
+                if (cbTT.Text == "Trực tiếp")
+                {
+                    //DateChonNgay.Enabled = false;
+                    //loadPTN();
+                    //int tt = 0;
+                    char tt = '0';
+                    gdPTNH.DataSource = daoPTN.TimPTN(s, ngay, tt);
+                }
+                else if (cbTT.Text == "Đặt lịch")
+                {
+                    //DateChonNgay.Enabled = true;
+                    //loadPTN_DL();
+                    char tt = '0';
+                    gdPTNH.DataSource = daoPTN.TimPTN(s, ngay2, tt);
+                }
+                else if (cbTT.Text == "Tất cả")
+                {
+                    //DateChonNgay.Enabled = true;
+                    //loadPTN_ALL();
+                    //char tt = ''
+                    //gdPTNH.DataSource = daoPTN.TimPTN(s, ngay2);
+                }
+                else if (cbTT.Text == "Đang khám")
+                {
+                    //DateChonNgay.Enabled = true;
+                    //loadPTN_DK();
+                    char tt = '1';
+                    gdPTNH.DataSource = daoPTN.TimPTN(s, ngay2, tt);
+                }
+                else
+                {
+                    //DateChonNgay.Enabled = true;
+                    //loadPTN_KX();
+                    char tt = '2';
+                    gdPTNH.DataSource = daoPTN.TimPTN(s, ngay2, tt);
+                }
 
             }
             else if (s.Length == 0)
             {
-                loadPTN();
-                loadPTNH();
+                //loadPTN();
+                //loadPTNH();
+                if (cbTT.Text == "Trực tiếp")
+                {
+                    //DateChonNgay.Enabled = false;
+                    loadPTN();
+                }
+                else if (cbTT.Text == "Đặt lịch")
+                {
+                    //DateChonNgay.Enabled = true;
+                    loadPTN_DL();
+                }
+                else if (cbTT.Text == "Tất cả")
+                {
+                    //DateChonNgay.Enabled = true;
+                    loadPTN_ALL();
+                }
+                else if (cbTT.Text == "Đang khám")
+                {
+                    //DateChonNgay.Enabled = true;
+                    loadPTN_DK();
+                }
+                else
+                {
+                    //DateChonNgay.Enabled = true;
+                    loadPTN_KX();
+                }
             }
         }
 
@@ -873,17 +991,17 @@ namespace quanlyphongkham.FORM
             }
             else if(cbTT.Text == "Tất cả")
             {
-                DateChonNgay.Enabled = false;
+                DateChonNgay.Enabled = true;
                 loadPTN_ALL();
             }
             else if(cbTT.Text == "Đang khám")
             {
-                DateChonNgay.Enabled = false;
+                DateChonNgay.Enabled = true;
                 loadPTN_DK();
             }
             else
             {
-                DateChonNgay.Enabled = false;
+                DateChonNgay.Enabled = true;
                 loadPTN_KX();
             }
         }

@@ -46,7 +46,7 @@ namespace quanlyphongkham.DAO
             }
             catch(SqlException ex)
             {
-                MessageBox.Show(ex.ToString());
+                //MessageBox.Show(ex.ToString());
                 return false;
             }
             
@@ -80,7 +80,7 @@ namespace quanlyphongkham.DAO
             }
             catch(SqlException ex)
             {
-                MessageBox.Show(ex.ToString());
+                //MessageBox.Show(ex.ToString());
                 return false;
             }
             
@@ -104,7 +104,7 @@ namespace quanlyphongkham.DAO
             }
             catch(SqlException ex)
             {
-                MessageBox.Show(ex.ToString());
+                //MessageBox.Show(ex.ToString());
             }
             
 

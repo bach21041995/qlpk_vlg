@@ -436,7 +436,7 @@
             | DevExpress.XtraPrinting.BorderSide.Right) 
             | DevExpress.XtraPrinting.BorderSide.Bottom)));
             this.xrTable3.Font = new System.Drawing.Font("Times New Roman", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.xrTable3.LocationFloat = new DevExpress.Utils.PointFloat(0F, 258.3334F);
+            this.xrTable3.LocationFloat = new DevExpress.Utils.PointFloat(0F, 283.3334F);
             this.xrTable3.Name = "xrTable3";
             this.xrTable3.Rows.AddRange(new DevExpress.XtraReports.UI.XRTableRow[] {
             this.xrTableRow3});
@@ -663,7 +663,7 @@
             // lbTenBS
             // 
             this.lbTenBS.Font = new System.Drawing.Font("Times New Roman", 12.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbTenBS.LocationFloat = new DevExpress.Utils.PointFloat(462.4015F, 181.5833F);
+            this.lbTenBS.LocationFloat = new DevExpress.Utils.PointFloat(494.4999F, 181.5833F);
             this.lbTenBS.Name = "lbTenBS";
             this.lbTenBS.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
             this.lbTenBS.SizeF = new System.Drawing.SizeF(204.1236F, 23F);

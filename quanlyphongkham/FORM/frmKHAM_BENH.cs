@@ -73,20 +73,29 @@ namespace quanlyphongkham.FORM
 
         void loadPTN_ALL()
         {
-            gdPTNH.DataSource = daoPTN.getDSPTN_ALL();
+            DateTime ht = System.DateTime.Now;
+            string ngay = ht.ToShortDateString();
+            ngay = ngay.Replace("/", "");
+            gdPTNH.DataSource = daoPTN.getDSPTN_ALL(ngay);
             xuly(false);
         }
 
 
         void loadPTN_DK()
         {
-            gdPTNH.DataSource = daoPTN.getDSPTN_DK();
+            DateTime ht = System.DateTime.Now;
+            string ngay = ht.ToShortDateString();
+            ngay = ngay.Replace("/", "");
+            gdPTNH.DataSource = daoPTN.getDSPTN_DK(ngay);
             xuly(false);
         }
 
         void loadPTN_KX()
         {
-            gdPTNH.DataSource = daoPTN.getDSPTN_KX();
+            DateTime ht = System.DateTime.Now;
+            string ngay = ht.ToShortDateString();
+            ngay = ngay.Replace("/", "");
+            gdPTNH.DataSource = daoPTN.getDSPTN_KX(ngay);
             xuly(false);
         }
 
@@ -464,7 +473,7 @@ namespace quanlyphongkham.FORM
 
         private KHAM_BENH LayTTKB_HT()
         {
-            string kbid = daoKB.insertMaKB(txtMaBN2.Text);
+            string kbid = gridView3.GetFocusedRowCellValue("KB_ID").ToString();
             string tnid = gridView3.GetFocusedRowCellValue("TN_ID").ToString();
             DateTime htk = Convert.ToDateTime(DateTK.Text);
             string htk2 = htk.ToShortDateString();
@@ -477,6 +486,8 @@ namespace quanlyphongkham.FORM
             KHAM_BENH t = new KHAM_BENH(kbid, tnid, htk2, ngay2, tt, kl, bp);
             return t;
         }
+
+        
 
         private PHIEU_TIEP_NHAN LayTTPTN_DK()
         {
@@ -506,13 +517,16 @@ namespace quanlyphongkham.FORM
             return t;
         }
 
+        
+
         private PHIEU_TIEP_NHAN LayTTPTN_KX()
         {
             string ma = gridView3.GetFocusedRowCellValue("TN_ID").ToString();
             int idnv = 2;
             int idbn = int.Parse(txtMaBN2.Text);
-            string idbs = gridView3.GetFocusedRowCellValue("NV_ID").ToString();
-            int idbs2 = int.Parse(idbs);
+            //string idbs = gridView3.GetFocusedRowCellValue("NV_ID").ToString();
+            int idbs = frmDANG_NHAP.idnv;
+            //int idbs2 = int.Parse(idbs);
             int stt = int.Parse(txtSTT2.Text);
             string dvk = "";
             int tuoithang = int.Parse(txtTuoithang2.Text);
@@ -529,7 +543,7 @@ namespace quanlyphongkham.FORM
             float bmi = float.Parse(txtBMI.Text);
             int tt = 2;
 
-            PHIEU_TIEP_NHAN t = new PHIEU_TIEP_NHAN(ma, idnv, idbn, stt, idbs2, dvk, tuoithang, tuoinam, ngaygio, mach, nhietdo, nhiptho, huyetap, chieucao, cannang, bmi, tt);
+            PHIEU_TIEP_NHAN t = new PHIEU_TIEP_NHAN(ma, idnv, idbn, stt, idbs, dvk, tuoithang, tuoinam, ngaygio, mach, nhietdo, nhiptho, huyetap, chieucao, cannang, bmi, tt);
 
             return t;
         }
@@ -695,6 +709,7 @@ namespace quanlyphongkham.FORM
                         pnTT.Enabled = true;
                         pnCDCLS.Enabled = true;
                         pnLSK.Enabled = true;
+                        btnHoantat.Enabled = true;
                     }
                 }
             }
@@ -727,7 +742,7 @@ namespace quanlyphongkham.FORM
                         gdPTNH.Enabled = true;
                         pnCDCLS.Enabled = false;
                         pnLSK.Enabled = false;
-                        
+                        btnHoantat.Enabled = true;
                     }
                 }
             }
@@ -766,7 +781,7 @@ namespace quanlyphongkham.FORM
                 suatt = 1;
             }
 
-            MessageBox.Show(suatt.ToString());
+           // MessageBox.Show(suatt.ToString());
 
 
             if (themtt == false)
@@ -1575,10 +1590,38 @@ namespace quanlyphongkham.FORM
 
         private void btnLamMoi_Click(object sender, EventArgs e)
         {
-            loadPTN();
-            loadKB_NGAY_DK();
-            loadKB_NGAY_KX();
-            loadKB_NGAY();
+            if (cbTT.Text == "Chờ khám")
+            {
+                //btnKham.Enabled = true;
+                btnSua.Enabled = false;
+                //DateChonNgay.Enabled = false;
+                loadPTN();
+                dongbang();
+            }
+            else if (cbTT.Text == "Đang khám")
+            {
+
+
+                //DateChonNgay.Enabled = true;
+                loadKB_NGAY_DK();
+                btnKham.Enabled = false;
+                //btnSua.Enabled = true;
+                dongbang();
+
+            }
+            else if (cbTT.Text == "Đã khám")
+            {
+                btnKham.Enabled = false;
+                //btnSua.Enabled = true;
+                //DateChonNgay.Enabled = false;
+                loadKB_NGAY_KX();
+                dongbang();
+            }
+            else
+            {
+                loadKB_NGAY();
+                dongbang();
+            }
         }
 
         void loadLSK()
@@ -1812,6 +1855,41 @@ namespace quanlyphongkham.FORM
         private void btnInPCD_Click(object sender, EventArgs e)
         {
             inPCD();
+        }
+
+        private void btnHoantat_Click(object sender, EventArgs e)
+        {
+            KHAM_BENH s = LayTTKB_HT();
+            CT_BENHLY cs = LayTTCTBL_SUA();
+            CT_BENHLY cps = LayTTCTBL_P_SUA();
+            PHIEU_TIEP_NHAN p = LayTTPTN_KX();
+            if (daoKB.UpdateKB(s))
+            {
+                if (txtMaICD.Text == "" || txtICD.Text == "")
+                {
+                    MessageBox.Show("Chưa nhập chuẩn đoán ICD");
+                }
+                else
+                {
+                    daoCTBL.deleteCTBL(cs);
+                    daoCTBL.InsertCTBL(cs);
+                    //daoCTBL.deleteCTBL(cps);
+                    //daoCTBL.InsertCTBL(cps);
+                    daoKB.UpdateKB(s);
+                    daoPTN.UpdatePTN_KX(p);
+                    MessageBox.Show("Hoàn tất khám thành công");
+                    btnLuu2.Enabled = false;
+                    xuly(false);
+                    btnKham.Enabled = false;
+                    btnSua.Enabled = true;
+                    btnKetoa.Enabled = false;
+                    pnTT.Enabled = false;
+                    gdPTNH.Enabled = true;
+                    pnCDCLS.Enabled = false;
+                    pnLSK.Enabled = false;
+
+                }
+            }
         }
     }
 }

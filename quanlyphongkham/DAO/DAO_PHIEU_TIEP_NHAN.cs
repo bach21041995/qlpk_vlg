@@ -31,12 +31,14 @@ namespace quanlyphongkham.DAO
             //return connecDB.ExecuteQuery(query);
         }
 
-        public DataTable getDSPTN_ALL()
+        public DataTable getDSPTN_ALL(string tk)
         {
             SqlConnection conn = new SqlConnection(connecDB.connectionStr);
             SqlCommand cmd = new SqlCommand("getPHIEU_TIEP_NHAN_ALL", conn);
             DataTable dt = new DataTable();
             cmd.CommandType = CommandType.StoredProcedure;
+            cmd.Parameters.Add("@ngay", SqlDbType.NVarChar, 30);
+            cmd.Parameters["@ngay"].Value = tk;
             conn.Open();
             cmd.ExecuteNonQuery();
             SqlDataAdapter adapter = new SqlDataAdapter(cmd);
@@ -48,12 +50,14 @@ namespace quanlyphongkham.DAO
             //return connecDB.ExecuteQuery(query);
         }
 
-        public DataTable getDSPTN_DK()
+        public DataTable getDSPTN_DK(string tk)
         {
             SqlConnection conn = new SqlConnection(connecDB.connectionStr);
             SqlCommand cmd = new SqlCommand("getPHIEU_TIEP_NHAN_DK", conn);
             DataTable dt = new DataTable();
             cmd.CommandType = CommandType.StoredProcedure;
+            cmd.Parameters.Add("@ngay", SqlDbType.NVarChar, 30);
+            cmd.Parameters["@ngay"].Value = tk;
             conn.Open();
             cmd.ExecuteNonQuery();
             SqlDataAdapter adapter = new SqlDataAdapter(cmd);
@@ -66,12 +70,14 @@ namespace quanlyphongkham.DAO
         }
 
 
-        public DataTable getDSPTN_KX()
+        public DataTable getDSPTN_KX(string tk)
         {
             SqlConnection conn = new SqlConnection(connecDB.connectionStr);
             SqlCommand cmd = new SqlCommand("getPHIEU_TIEP_NHAN_KX", conn);
             DataTable dt = new DataTable();
             cmd.CommandType = CommandType.StoredProcedure;
+            cmd.Parameters.Add("@ngay", SqlDbType.NVarChar, 30);
+            cmd.Parameters["@ngay"].Value = tk;
             conn.Open();
             cmd.ExecuteNonQuery();
             SqlDataAdapter adapter = new SqlDataAdapter(cmd);
@@ -83,7 +89,7 @@ namespace quanlyphongkham.DAO
             //return connecDB.ExecuteQuery(query);
         }
 
-        public DataTable TimPTN(string tk)
+        public DataTable TimPTN(string tk, string ngay, char tt)
         {
             string t = tk.ToLower();
             SqlConnection conn = new SqlConnection(connecDB.connectionStr);
@@ -92,14 +98,17 @@ namespace quanlyphongkham.DAO
             cmd.CommandType = CommandType.StoredProcedure;
             cmd.Parameters.Add("@tk", SqlDbType.NVarChar, 30);
             cmd.Parameters["@tk"].Value = t;
+            cmd.Parameters.Add("@ngay", SqlDbType.NVarChar, 30);
+            cmd.Parameters["@ngay"].Value = ngay;
+            cmd.Parameters.Add("@tt", SqlDbType.NVarChar, 5);
+            cmd.Parameters["@tt"].Value = tt;
+
             conn.Open();
             cmd.ExecuteNonQuery();
             SqlDataAdapter adapter = new SqlDataAdapter(cmd);
             adapter.Fill(dt);
             conn.Close();
             return dt;
-
-            
         }
 
         public DataTable timPTN_NGAY(string ngay, string tk)
@@ -218,7 +227,6 @@ namespace quanlyphongkham.DAO
                 MessageBox.Show(e.ToString());
                 return false;
             }
-                    
         }
 
         public bool UpdatePTN(PHIEU_TIEP_NHAN t)
@@ -274,8 +282,6 @@ namespace quanlyphongkham.DAO
             //cmd.Parameters.Add("@mathuoc", SqlDbType.NVarChar, 20);
             //cmd.Parameters["@mathuoc"].Value = mt;
             cmd.Parameters.Add("@TN_ID", SqlDbType.NVarChar, 10);
-            
-
             cmd.Parameters["@TN_ID"].Value = t.Id_tn;
             conn.Open();
             int result = cmd.ExecuteNonQuery();
@@ -291,7 +297,6 @@ namespace quanlyphongkham.DAO
             //cmd.Parameters.Add("@mathuoc", SqlDbType.NVarChar, 20);
             //cmd.Parameters["@mathuoc"].Value = mt;
             cmd.Parameters.Add("@TN_ID", SqlDbType.NVarChar, 10);
-
 
             cmd.Parameters["@TN_ID"].Value = t.Id_tn;
             conn.Open();
@@ -310,10 +315,8 @@ namespace quanlyphongkham.DAO
             conn.Open();
             cmd.ExecuteNonQuery();
             conn.Close();
-
             /*string query = "Update DM_THUOC set THUOC_TRANGTHAI = '1' where THUOC_ID = '" + mathuoc + "'";
             int result = connecDB.ExecuteNonQuery(query);
-
             return result > 0;*/
         }
 

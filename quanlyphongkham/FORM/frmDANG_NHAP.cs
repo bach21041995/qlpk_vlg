@@ -49,6 +49,7 @@ namespace quanlyphongkham.FORM
                     DialogResult = DialogResult.OK;
                     foreach (DataRow item in dt.Rows)
                     {
+                        idnv = int.Parse(item["NV_ID"].ToString());
                         nguoidung = item["NV_HOTEN"].ToString();
                         cv = item["CV_TEN"].ToString();
                         cd = item["CD_TEN"].ToString();
