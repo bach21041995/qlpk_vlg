@@ -466,25 +466,23 @@
             this.groupControl1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.groupControl1.Location = new System.Drawing.Point(0, 0);
             this.groupControl1.Name = "groupControl1";
-            this.groupControl1.Size = new System.Drawing.Size(861, 600);
+            this.groupControl1.Size = new System.Drawing.Size(1362, 725);
             this.groupControl1.TabIndex = 0;
             // 
             // pnTong
             // 
             this.pnTong.Controls.Add(this.tabControl);
-            this.pnTong.Dock = System.Windows.Forms.DockStyle.Right;
-            this.pnTong.Location = new System.Drawing.Point(69, 20);
+            this.pnTong.Location = new System.Drawing.Point(618, 17);
             this.pnTong.Name = "pnTong";
-            this.pnTong.Size = new System.Drawing.Size(790, 578);
+            this.pnTong.Size = new System.Drawing.Size(732, 425);
             this.pnTong.TabIndex = 85;
             // 
             // tabControl
             // 
-            this.tabControl.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tabControl.Location = new System.Drawing.Point(0, 0);
+            this.tabControl.Location = new System.Drawing.Point(3, 6);
             this.tabControl.Name = "tabControl";
             this.tabControl.SelectedTabPage = this.tabKB;
-            this.tabControl.Size = new System.Drawing.Size(790, 578);
+            this.tabControl.Size = new System.Drawing.Size(776, 541);
             this.tabControl.TabIndex = 0;
             this.tabControl.TabPages.AddRange(new DevExpress.XtraTab.XtraTabPage[] {
             this.tabKB,
@@ -496,7 +494,7 @@
             // 
             this.tabKB.Controls.Add(this.pnKB);
             this.tabKB.Name = "tabKB";
-            this.tabKB.Size = new System.Drawing.Size(788, 553);
+            this.tabKB.Size = new System.Drawing.Size(770, 513);
             this.tabKB.Text = "Khám bệnh";
             // 
             // pnKB
@@ -541,7 +539,7 @@
             this.pnKB.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pnKB.Location = new System.Drawing.Point(0, 0);
             this.pnKB.Name = "pnKB";
-            this.pnKB.Size = new System.Drawing.Size(788, 553);
+            this.pnKB.Size = new System.Drawing.Size(770, 513);
             this.pnKB.TabIndex = 30;
             // 
             // DateTK
@@ -1158,7 +1156,7 @@
             // 
             this.tabKT.Controls.Add(this.pnTT);
             this.tabKT.Name = "tabKT";
-            this.tabKT.Size = new System.Drawing.Size(784, 550);
+            this.tabKT.Size = new System.Drawing.Size(770, 513);
             this.tabKT.Text = "Kê toa";
             this.tabKT.Paint += new System.Windows.Forms.PaintEventHandler(this.tabKT_Paint);
             // 
@@ -1179,7 +1177,7 @@
             this.pnTT.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pnTT.Location = new System.Drawing.Point(0, 0);
             this.pnTT.Name = "pnTT";
-            this.pnTT.Size = new System.Drawing.Size(784, 550);
+            this.pnTT.Size = new System.Drawing.Size(770, 513);
             this.pnTT.TabIndex = 88;
             // 
             // panelTT
@@ -1899,7 +1897,7 @@
             // 
             this.tabCLS.Controls.Add(this.pnCDCLS);
             this.tabCLS.Name = "tabCLS";
-            this.tabCLS.Size = new System.Drawing.Size(784, 550);
+            this.tabCLS.Size = new System.Drawing.Size(770, 513);
             this.tabCLS.Text = "Chỉ định";
             // 
             // pnCDCLS
@@ -1923,7 +1921,7 @@
             this.pnCDCLS.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pnCDCLS.Location = new System.Drawing.Point(0, 0);
             this.pnCDCLS.Name = "pnCDCLS";
-            this.pnCDCLS.Size = new System.Drawing.Size(784, 550);
+            this.pnCDCLS.Size = new System.Drawing.Size(770, 513);
             this.pnCDCLS.TabIndex = 4;
             // 
             // btnInPCD
@@ -2347,7 +2345,7 @@
             // 
             this.tabLS.Controls.Add(this.pnLSK);
             this.tabLS.Name = "tabLS";
-            this.tabLS.Size = new System.Drawing.Size(784, 550);
+            this.tabLS.Size = new System.Drawing.Size(770, 513);
             this.tabLS.Text = "Lịch sử khám";
             // 
             // pnLSK
@@ -2360,7 +2358,7 @@
             this.pnLSK.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pnLSK.Location = new System.Drawing.Point(0, 0);
             this.pnLSK.Name = "pnLSK";
-            this.pnLSK.Size = new System.Drawing.Size(784, 550);
+            this.pnLSK.Size = new System.Drawing.Size(770, 513);
             this.pnLSK.TabIndex = 4;
             // 
             // btnSDL_LSK
@@ -2391,7 +2389,7 @@
             // 
             this.tabLSK_TT.Controls.Add(this.gcTT_LSK);
             this.tabLSK_TT.Name = "tabLSK_TT";
-            this.tabLSK_TT.Size = new System.Drawing.Size(769, 160);
+            this.tabLSK_TT.Size = new System.Drawing.Size(765, 157);
             this.tabLSK_TT.Text = "TOA THUỐC";
             // 
             // gcTT_LSK
@@ -2400,7 +2398,7 @@
             this.gcTT_LSK.Location = new System.Drawing.Point(0, 0);
             this.gcTT_LSK.MainView = this.gridView11;
             this.gcTT_LSK.Name = "gcTT_LSK";
-            this.gcTT_LSK.Size = new System.Drawing.Size(769, 160);
+            this.gcTT_LSK.Size = new System.Drawing.Size(765, 157);
             this.gcTT_LSK.TabIndex = 1;
             this.gcTT_LSK.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridView11});
@@ -3173,13 +3171,13 @@
             // 
             // panelBL
             // 
+            this.panelBL.Controls.Add(this.gdBL);
             this.panelBL.Controls.Add(this.txtTKBL);
             this.panelBL.Controls.Add(this.label13);
-            this.panelBL.Controls.Add(this.gdBL);
             this.panelBL.Controls.Add(this.label12);
-            this.panelBL.Location = new System.Drawing.Point(859, 472);
+            this.panelBL.Location = new System.Drawing.Point(618, 467);
             this.panelBL.Name = "panelBL";
-            this.panelBL.Size = new System.Drawing.Size(494, 313);
+            this.panelBL.Size = new System.Drawing.Size(480, 246);
             this.panelBL.TabIndex = 82;
             this.panelBL.Visible = false;
             // 
@@ -3205,10 +3203,10 @@
             // gdBL
             // 
             this.gdBL.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.gdBL.Location = new System.Drawing.Point(2, 70);
+            this.gdBL.Location = new System.Drawing.Point(2, 81);
             this.gdBL.MainView = this.gridView4;
             this.gdBL.Name = "gdBL";
-            this.gdBL.Size = new System.Drawing.Size(490, 241);
+            this.gdBL.Size = new System.Drawing.Size(476, 163);
             this.gdBL.TabIndex = 3;
             this.gdBL.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridView4});
@@ -3653,12 +3651,13 @@
             this.cmSDL_LSK.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.SDL_LSK});
             this.cmSDL_LSK.Name = "cmSDL_LSK";
-            this.cmSDL_LSK.Size = new System.Drawing.Size(189, 26);
+            this.cmSDL_LSK.Size = new System.Drawing.Size(204, 26);
+            this.cmSDL_LSK.Opening += new System.ComponentModel.CancelEventHandler(this.cmSDL_LSK_Opening);
             // 
             // SDL_LSK
             // 
             this.SDL_LSK.Name = "SDL_LSK";
-            this.SDL_LSK.Size = new System.Drawing.Size(188, 22);
+            this.SDL_LSK.Size = new System.Drawing.Size(203, 22);
             this.SDL_LSK.Text = "Sử dụng lại lịch sử khám";
             this.SDL_LSK.Click += new System.EventHandler(this.SDL_LSK_Click);
             // 
@@ -3667,7 +3666,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(861, 600);
+            this.ClientSize = new System.Drawing.Size(1362, 725);
             this.Controls.Add(this.groupControl1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "frmKHAM_BENH";

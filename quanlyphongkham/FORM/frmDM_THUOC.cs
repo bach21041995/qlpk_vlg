@@ -21,8 +21,9 @@ namespace quanlyphongkham.FORM
             
         }
 
-        DAO_DM_THUOC daoThuoc = new DAO_DM_THUOC();
+        DAO_DM_THUOC    daoThuoc = new DAO_DM_THUOC();
         ConnectionDatabase connecDB = new ConnectionDatabase();
+        DAO_NHOMVATTU daoNVT = new DAO_NHOMVATTU();
         bool dieukien = true;
 
         void loadThuoc()
@@ -37,9 +38,9 @@ namespace quanlyphongkham.FORM
             //cbLT.ValueMember = "LT_ID";
             //cbLT.Items.Insert(0, "Tất cả");
             //cbLT.SelectedIndex = 0;
-            cbLT2.DataSource = daoThuoc.getLT();
-            cbLT2.DisplayMember = "LT_TEN";
-            cbLT2.ValueMember = "LT_ID";
+            cbbNhomVT.DataSource = daoNVT.getNhomVT();
+            cbbNhomVT.DisplayMember = "NVT_TEN";
+            cbbNhomVT.ValueMember = "NVT_ID";
         }
 
         void binding()
@@ -60,9 +61,9 @@ namespace quanlyphongkham.FORM
 
         void xuLyControl(bool b)
         {
-            btnThem.Enabled = !b;
-            btnSua.Enabled = !b;
-            btnXoa.Enabled = !b;
+            //btnThem.Enabled = !b;
+            //btnSua.Enabled = !b;
+            //btnXoa.Enabled = !b;
             pnEdit.Enabled = b;
             btnLuu.Visible = b;
             btnHuy.Visible = b;
@@ -72,28 +73,36 @@ namespace quanlyphongkham.FORM
         void resetText()
         {
             txtTen.Text = "";
-            txtCD.Text = "";
-            txtHDSD.Text = "";
+            txtHoatChat.Text = "";
+            txtCachDung.Text = "";
             txtMa.Text = "";
             txtDVT.Text = "";
             txtGia.Text = "";
+            txtHamLuong.Text = "";
+            txtQuyCach.Text = "";
+            txtGhiChu.Text = "";
         }
 
-        private DM_THUOC LayTTThuoc()
+        private DM_VATTU LayTTThuoc()
         {
             string ma = txtMa.Text;
             string ten = txtTen.Text;
-            string idlt = cbLT2.SelectedValue.ToString();
-            string hdsd = txtHDSD.Text;
-            string cd = txtCD.Text;
+            string hdsd = txtCachDung.Text;
+            string cd = txtCachDung.Text;
             string dvt = txtDVT.Text;
             float gia = float.Parse(txtGia.Text);
-            int tt = 1;
-            string cachdung = txtCachdung.Text;
-            
-            DM_THUOC t = new DM_THUOC(ma, idlt, ten, hdsd, dvt, cd, gia, tt, cachdung);
+            string cachdung = txtCachDung.Text;
+            string hoatchat = txtHoatChat.Text;
+            string hamluong = txtHamLuong.Text;
+            string quycach = txtQuyCach.Text;
+            string ghichu = txtGhiChu.Text;
+            string nvt = cbbNhomVT.SelectedValue.ToString();
+            int nuocsx = 0;
+            string nhasx = "";
 
-            return t;
+            DM_VATTU vt = new DM_VATTU(ma, ten, dvt, gia, cachdung, hoatchat, hamluong, quycach, ghichu, nhasx, nvt, nuocsx);
+
+            return vt;
         }
 
         Form frm = null;
@@ -106,7 +115,7 @@ namespace quanlyphongkham.FORM
             if (frm == null)
             {
                 frm = new Form();
-                frm.Text = "THÔNG TIN THUỐC";
+                frm.Text = "THÔNG TIN VẬT TƯ";
                 frm.MaximizeBox = false;
                 frm.MinimizeBox = false;
                 frm.FormClosing += frm_Closing;
@@ -114,7 +123,7 @@ namespace quanlyphongkham.FORM
                 frm.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
                 pnEdit.Dock = DockStyle.Top | DockStyle.Left;
                 frm.Controls.Add(pnEdit);
-                frm.Size = new System.Drawing.Size(580, 310);
+                frm.Size = new System.Drawing.Size(750, 410);
             }
             pnEdit.Visible = true;
             frm.ShowDialog();
@@ -125,31 +134,30 @@ namespace quanlyphongkham.FORM
             resetText();
             xuLyControl(true);
             dieukien = true;
+            txtMa.ReadOnly = false;
             loadData();
-            //btnThemTiep.Enabled = true;
-            cbLT2.Enabled = true;
             showFormThongTin();
             cbLT2_SelectedIndexChanged(sender, e);
         }
 
         private void gridView1_FocusedRowChanged(object sender, DevExpress.XtraGrid.Views.Base.FocusedRowChangedEventArgs e)
         {
-            try
-            {
-                txtMa.Text = gridView1.GetFocusedRowCellValue("THUOC_ID").ToString();
-                lbMa.Text = gridView1.GetFocusedRowCellValue("THUOC_ID").ToString();
-                lbTen.Text = gridView1.GetFocusedRowCellValue("THUOC_TEN").ToString();
+            //try
+            //{
+            //    txtMa.Text = gridView1.GetFocusedRowCellValue("THUOC_ID").ToString();
+            //    lbMa.Text = gridView1.GetFocusedRowCellValue("THUOC_ID").ToString();
+            //    lbTen.Text = gridView1.GetFocusedRowCellValue("THUOC_TEN").ToString();
                 
-                txtTen.Text = gridView1.GetFocusedRowCellValue("THUOC_TEN").ToString();
-                txtHDSD.Text = gridView1.GetFocusedRowCellValue("THUOC_HDSD").ToString();
-                txtCD.Text = gridView1.GetFocusedRowCellValue("THUOC_CONGDUNG").ToString();
-                txtDVT.Text = gridView1.GetFocusedRowCellValue("THUOC_DVT").ToString();
-                txtGia.Text = gridView1.GetFocusedRowCellValue("THUOC_GIA").ToString();
-                cbLT2.Text = gridView1.GetFocusedRowCellValue("LT_TEN").ToString();
-            }
-            catch
-            {
-            }
+            //    txtTen.Text = gridView1.GetFocusedRowCellValue("THUOC_TEN").ToString();
+            //    txtCachDung.Text = gridView1.GetFocusedRowCellValue("THUOC_HDSD").ToString();
+            //    txtCD.Text = gridView1.GetFocusedRowCellValue("THUOC_CONGDUNG").ToString();
+            //    txtDVT.Text = gridView1.GetFocusedRowCellValue("THUOC_DVT").ToString();
+            //    txtGia.Text = gridView1.GetFocusedRowCellValue("THUOC_GIA").ToString();
+            //    cbbNhomVT.Text = gridView1.GetFocusedRowCellValue("LT_TEN").ToString();
+            //}
+            //catch
+            //{
+            //}
         }
 
         
@@ -164,30 +172,32 @@ namespace quanlyphongkham.FORM
 
         private void btnLuu_Click(object sender, EventArgs e)
         {
-            DM_THUOC t = LayTTThuoc();
-            if (dieukien)
+            
+            if (KiemTraLoi() == "")
             {
-                if (daoThuoc.InsertThuoc(t))
+                DM_VATTU vt = LayTTThuoc();
+                if (dieukien)
                 {
-                    MessageBox.Show("Thêm thành công");
-                    loadThuoc();
-                    xuLyControl(false);
-                    //txtMa.Enabled = true;
-                    frm.Visible = false;
-                    resetText();
+                    if (daoThuoc.InsertThuoc(vt))
+                    {
+                        MessageBox.Show("Thêm thành công");
+                        frm.Visible = false;
+                        loadThuoc();
+                        xuLyControl(false);
+                        //txtMa.Enabled = true;
+                    }
                 }
-            }
-            else
-            {
-                if (daoThuoc.UpdateThuoc(t))
+                else
                 {
-                    MessageBox.Show("Sửa thành công");
-                    loadThuoc();
-                    xuLyControl(false);
-                    //txtMa.Enabled = true;
-                    frm.Visible = false;
-                    resetText();
-                    //sua(true);
+                    if (daoThuoc.UpdateThuoc(vt))
+                    {
+                        MessageBox.Show("Sửa thành công");
+                        frm.Visible = false;
+                        loadThuoc();
+                        xuLyControl(false);
+                        //txtMa.Enabled = true;
+                        //sua(true);
+                    }
                 }
             }
         }
@@ -225,69 +235,38 @@ namespace quanlyphongkham.FORM
         {
             dieukien = false;
             xuLyControl(true);
+            txtMa.ReadOnly = true;
             //btnThemTiep.Enabled = false;
             showFormThongTin();
         }
 
         private void cbLT2_SelectedIndexChanged(object sender, EventArgs e)
         {
-            try
-            {
-                string malt = cbLT2.SelectedValue.ToString();
+            //try
+            //{
+            //    string malt = cbbNhomVT.SelectedValue.ToString();
 
-                if (dieukien == true)
-                {
-                    txtMa.Text = daoThuoc.insertMaThuoc(malt);
-                }
-               else
-               {
-                    txtMa.Text = gridView1.GetFocusedRowCellValue("THUOC_ID").ToString();
-               }
-            }
-            catch
-            {
-            }
+            //    if (dieukien == true)
+            //    {
+            //        txtMa.Text = daoThuoc.insertMaThuoc(malt);
+            //    }
+            //   else
+            //   {
+            //        txtMa.Text = gridView1.GetFocusedRowCellValue("THUOC_ID").ToString();
+            //   }
+            //}
+            //catch
+            //{
+            //}
         }
 
         void timKiem()
         {
             string s = txtTim.Text;
-            //string where = "";
-            //string query = "";
-            //where = " lower(THUOC_TEN) like N'%" + s.ToLower() + "%'";
             
-            /*if (cbbTK.Text == "Mã học viên")
-            {
-                where = "  mahv like '%" + s + "%'";
-            }
-            else if (cbbTK.Text == "Tên học viên")
-            {
-                where = " lower(tenhv) like N'%" + s.ToLower() + "%'";
-            }
-            else if (cbbTK.Text == "Đối tượng")
-            {
-                where = " lower(c.tendt) like N'%" + s.ToLower() + "%'";
-            }
-            else if (cbbTK.Text == "Lớp")
-            {
-                where = " lower(b.tenlop) like N'%" + s.ToLower() + "%'";
-            }*/
-
             if (s.Length > 0)
             {
-                //query = "select MaHV, TenHV, (CASE GioiTinh when 'true' then N'Nam' else N'Nữ' end) as GioiTinh, NgaySinhHV, DiaChi, DienThoai, a.MaLop, a.MaDT, TenDT, TenLop"
-                //+ " from hocvien a , lop b, doituong c where a.MaLop = b.MaLop and a.MaDT = c.MaDT and " + where + "";
-                //DataTable dt = conDB.ExecuteQuery(query);
-                gcThuoc.DataSource = daoThuoc.TimThuoc(s);
-                /*if (dt != null)
-                {
-                    gcHocVien.DataSource = dt;
-                }
-
-                if (dt.Rows.Count == 0)
-                {
-                    MessageBox.Show("Không tìm thấy dữ liệu", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Stop);
-                }*/
+                gcThuoc.DataSource = daoThuoc.TimKiemVatTu(s);
             }
             else if (s.Length == 0)
             {
@@ -306,7 +285,7 @@ namespace quanlyphongkham.FORM
         {
             try
             {
-                DialogResult dr = MessageBox.Show("Bạn có muốn xóa thuốc  '" + lbTen.Text + "' ?", "Thông báo", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                DialogResult dr = MessageBox.Show("Bạn có muốn xóa vật tư  '" + lbTen.Text + "' ?", "Thông báo", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                 if (dr == DialogResult.Yes)
                 {
                     daoThuoc.deleteThuoc(lbMa.Text);
@@ -319,6 +298,37 @@ namespace quanlyphongkham.FORM
             {
                 //MessageBox.Show("Không thể xóa thuốc '" + lbTen.Text + "' vì có nhân viên sử dụng thông tin Chức vụ này", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
+        }
+
+        public string KiemTraLoi()
+        {
+            string err = "";
+            if (txtMa.Text == "")
+            {
+                err = "Chưa nhập mã vật tư";
+            }
+            else if (txtTen.Text == "")
+            {
+                err = "Chưa nhập tên vật tư";
+            }
+            else if (txtNhaSX.Text == "")
+            {
+                err = "Chưa nhập nhà sản xuất";
+            }
+            else if (txtNuocSX.Text == "")
+            {
+                err = "Chưa nhập nước sản xuất";
+            }
+            else if (txtGia.Text == "")
+            {
+                err = "Chưa nhập giá bán";
+            }
+            else if (cbbNhomVT.Text == "")
+            {
+                err = "Chưa nhập nhóm vật tư";
+            }
+            lbLoi.Text = err;
+            return err;
         }
     }
 }

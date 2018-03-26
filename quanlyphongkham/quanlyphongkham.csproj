@@ -83,19 +83,28 @@
     <Compile Include="DAO\DAO_CHUC_VU.cs" />
     <Compile Include="DAO\DAO_CT_BENHLY.cs" />
     <Compile Include="DAO\DAO_CT_CLS.cs" />
+    <Compile Include="DAO\DAO_CT_PHIEUNHAP.cs" />
     <Compile Include="DAO\DAO_CT_TOATHUOC.cs" />
     <Compile Include="DAO\DAO_DANG_NHAP.cs" />
     <Compile Include="DAO\DAO_DM_CANLAMSAN.cs" />
+    <Compile Include="DAO\DAO_DM_KHO.cs" />
     <Compile Include="DAO\DAO_DM_THUOC.cs" />
     <Compile Include="DAO\DAO_KHAM_BENH.cs" />
     <Compile Include="DAO\DAO_LOAI_BENHLY.cs" />
     <Compile Include="DAO\DAO_LOAI_THUOC.cs" />
     <Compile Include="DAO\DAO_NGAY.cs" />
+    <Compile Include="DAO\DAO_NHACUNGCAP.cs" />
     <Compile Include="DAO\DAO_NHAN_VIEN.cs" />
+    <Compile Include="DAO\DAO_NHASANXUAT.cs" />
+    <Compile Include="DAO\DAO_NHOMVATTU.cs" />
+    <Compile Include="DAO\DAO_NUOCSANXUAT.cs" />
     <Compile Include="DAO\DAO_PHIEU_CHI_DINH.cs" />
+    <Compile Include="DAO\DAO_PHIEU_NHAP_KHO.cs" />
     <Compile Include="DAO\DAO_PHIEU_TIEP_NHAN.cs" />
     <Compile Include="DAO\DAO_TOA_THUOC.cs" />
+    <Compile Include="DAO\DAO_DM_LOAIVATTU.cs" />
     <Compile Include="DTO\BENH_NHAN.cs" />
+    <Compile Include="DTO\CHITIET_PHIEUNHAP.cs" />
     <Compile Include="DTO\CHUC_DANH.cs" />
     <Compile Include="DTO\CHUC_VU.cs" />
     <Compile Include="DTO\CT_BENHLY.cs" />
@@ -103,21 +112,22 @@
     <Compile Include="DTO\CT_TOATHUOC.cs" />
     <Compile Include="DTO\DM_BENHLY.cs" />
     <Compile Include="DTO\DM_CANLAMSAN.cs" />
+    <Compile Include="DTO\DM_KHO.cs" />
+    <Compile Include="DTO\DM_LOAI_VAT_TU.cs" />
+    <Compile Include="DTO\DM_NHA_SAN_XUAT.cs" />
+    <Compile Include="DTO\DM_NHOM_VAT_TU.cs" />
+    <Compile Include="DTO\DM_NUOC_SAN_XUAT.cs" />
     <Compile Include="DTO\DM_THUOC.cs" />
+    <Compile Include="DTO\DM_VATTU.cs" />
     <Compile Include="DTO\KHAM_BENH.cs" />
     <Compile Include="DTO\LOAI_BENHLY.cs" />
     <Compile Include="DTO\LOAI_THUOC.cs" />
     <Compile Include="DTO\NGAY.cs" />
     <Compile Include="DTO\NHAN_VIEN.cs" />
     <Compile Include="DTO\PHIEU_CHI_DINH.cs" />
+    <Compile Include="DTO\PHIEU_NHAP_KHO.cs" />
     <Compile Include="DTO\PHIEU_TIEP_NHAN.cs" />
     <Compile Include="DTO\TOA_THUOC.cs" />
-    <Compile Include="Form1.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Form1.Designer.cs">
-      <DependentUpon>Form1.cs</DependentUpon>
-    </Compile>
     <Compile Include="FORM\frmCAN_LAM_SAN.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -141,6 +151,36 @@
     </Compile>
     <Compile Include="FORM\frmDANG_NHAP.Designer.cs">
       <DependentUpon>frmDANG_NHAP.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FORM\frmDM_KHO.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FORM\frmDM_KHO.Designer.cs">
+      <DependentUpon>frmDM_KHO.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FORM\frmDM_LOAIVATTU.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FORM\frmDM_LOAIVATTU.Designer.cs">
+      <DependentUpon>frmDM_LOAIVATTU.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FORM\frmDM_NHASANXUAT.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FORM\frmDM_NHASANXUAT.Designer.cs">
+      <DependentUpon>frmDM_NHASANXUAT.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FORM\frmDM_NHOMVATTU.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FORM\frmDM_NHOMVATTU.Designer.cs">
+      <DependentUpon>frmDM_NHOMVATTU.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FORM\frmDM_NUOCSANXUAT.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FORM\frmDM_NUOCSANXUAT.Designer.cs">
+      <DependentUpon>frmDM_NUOCSANXUAT.cs</DependentUpon>
     </Compile>
     <Compile Include="FORM\frmDM_THUOC.cs">
       <SubType>Form</SubType>
@@ -178,6 +218,12 @@
     <Compile Include="FORM\frmNHAN_VIEN.Designer.cs">
       <DependentUpon>frmNHAN_VIEN.cs</DependentUpon>
     </Compile>
+    <Compile Include="FORM\frmNHAP_KHO.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FORM\frmNHAP_KHO.Designer.cs">
+      <DependentUpon>frmNHAP_KHO.cs</DependentUpon>
+    </Compile>
     <Compile Include="FORM\frmPHIEU_TIEP_NHAN.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -210,6 +256,21 @@
     <EmbeddedResource Include="FORM\frmDANG_NHAP.resx">
       <DependentUpon>frmDANG_NHAP.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="FORM\frmDM_KHO.resx">
+      <DependentUpon>frmDM_KHO.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FORM\frmDM_LOAIVATTU.resx">
+      <DependentUpon>frmDM_LOAIVATTU.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FORM\frmDM_NHASANXUAT.resx">
+      <DependentUpon>frmDM_NHASANXUAT.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FORM\frmDM_NHOMVATTU.resx">
+      <DependentUpon>frmDM_NHOMVATTU.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FORM\frmDM_NUOCSANXUAT.resx">
+      <DependentUpon>frmDM_NUOCSANXUAT.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FORM\frmDM_THUOC.resx">
       <DependentUpon>frmDM_THUOC.cs</DependentUpon>
     </EmbeddedResource>
@@ -227,6 +288,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FORM\frmNHAN_VIEN.resx">
       <DependentUpon>frmNHAN_VIEN.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FORM\frmNHAP_KHO.resx">
+      <DependentUpon>frmNHAP_KHO.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FORM\frmPHIEU_TIEP_NHAN.resx">
       <DependentUpon>frmPHIEU_TIEP_NHAN.cs</DependentUpon>

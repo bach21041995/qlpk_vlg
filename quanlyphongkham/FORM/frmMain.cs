@@ -224,5 +224,85 @@ namespace quanlyphongkham.FORM
             frmMain frm = new frmMain();
             frm.Close();
         }
+
+        XtraTabPage tabNhomVT;
+        frmDM_NHOMVATTU frmNVT;
+        private void btnNhomVT_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            if (frmNVT == null)
+            {
+                tabNhomVT = new XtraTabPage();
+                frmNVT = new frmDM_NHOMVATTU();
+                addForm(tabNhomVT, frmNVT, "Nhóm vật tư");
+            }
+            else
+            {
+                loadPage(tabNhomVT, frmNVT);
+            }
+        }
+
+        XtraTabPage tabNCSX;
+        frmDM_NUOCSANXUAT frmNCSX;
+        private void btnNuocSX_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            if (frmNCSX == null)
+            {
+                tabNCSX = new XtraTabPage();
+                frmNCSX = new frmDM_NUOCSANXUAT();
+                addForm(tabNCSX, frmNCSX, "Nước sản xuất");
+            }
+            else
+            {
+                loadPage(tabNCSX, frmNCSX);
+            }
+        }
+
+        XtraTabPage tabNhaSX;
+        frmDM_NHASANXUAT frmNhaSX;
+        private void btnNhaSX_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            if (frmNhaSX == null)
+            {
+                tabNhaSX = new XtraTabPage();
+                frmNhaSX = new frmDM_NHASANXUAT();
+                addForm(tabNhaSX, frmNhaSX, "Nhà sản xuất");
+            }
+            else
+            {
+                loadPage(tabNhaSX, frmNhaSX);
+            }
+        }
+
+        XtraTabPage tabKho;
+        frmDM_KHO frmKho;
+        private void btnKho_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            if (frmKho == null)
+            {
+                tabKho = new XtraTabPage();
+                frmKho = new frmDM_KHO();
+                addForm(tabKho, frmKho, "Kho");
+            }
+            else
+            {
+                loadPage(tabKho, frmKho);
+            }
+        }
+
+        XtraTabPage tabNhapKho;
+        frmNHAP_KHO frmNhapKho;
+        private void btnNhapKho_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            if (frmNhapKho == null)
+            {
+                tabNhapKho = new XtraTabPage();
+                frmNhapKho = new frmNHAP_KHO();
+                addForm(tabNhapKho, frmNhapKho, "Nhập kho");
+            }
+            else
+            {
+                loadPage(tabNhapKho, frmNhapKho);
+            }
+        }
     }
 }

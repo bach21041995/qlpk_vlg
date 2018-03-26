@@ -207,3 +207,53 @@ D:\THUVIEC_QLPK\qlpktn\quanlyphongkham\quanlyphongkham\obj\Debug\quanlyphongkham
 D:\THUVIEC_QLPK\qlpktn\quanlyphongkham\quanlyphongkham\obj\Debug\quanlyphongkham.FORM.frmDANG_NHAP.resources
 D:\THUVIEC_QLPK\qlpktn\quanlyphongkham\quanlyphongkham\obj\Debug\quanlyphongkham.Report.rptPCD_CLS.resources
 D:\THUVIEC_QLPK\qlpktn\quanlyphongkham\quanlyphongkham\bin\Debug\DevExpress.BonusSkins.v17.1.dll
+D:\VNPT\HIS OFFLINE\github\qlpk_vlg\quanlyphongkham\bin\Debug\quanlyphongkham.exe.config
+D:\VNPT\HIS OFFLINE\github\qlpk_vlg\quanlyphongkham\obj\Debug\quanlyphongkham.exe
+D:\VNPT\HIS OFFLINE\github\qlpk_vlg\quanlyphongkham\obj\Debug\quanlyphongkham.pdb
+D:\VNPT\HIS OFFLINE\github\qlpk_vlg\quanlyphongkham\bin\Debug\quanlyphongkham.exe
+D:\VNPT\HIS OFFLINE\github\qlpk_vlg\quanlyphongkham\bin\Debug\quanlyphongkham.pdb
+D:\VNPT\HIS OFFLINE\github\qlpk_vlg\quanlyphongkham\obj\Debug\quanlyphongkham.csprojResolveAssemblyReference.cache
+D:\VNPT\HIS OFFLINE\github\qlpk_vlg\quanlyphongkham\obj\Debug\quanlyphongkham.FORM.frmCAN_LAM_SAN.resources
+D:\VNPT\HIS OFFLINE\github\qlpk_vlg\quanlyphongkham\obj\Debug\quanlyphongkham.FORM.frmCHUC_DANH.resources
+D:\VNPT\HIS OFFLINE\github\qlpk_vlg\quanlyphongkham\obj\Debug\quanlyphongkham.FORM.frmCHUC_VU.resources
+D:\VNPT\HIS OFFLINE\github\qlpk_vlg\quanlyphongkham\obj\Debug\quanlyphongkham.FORM.frmDANG_NHAP.resources
+D:\VNPT\HIS OFFLINE\github\qlpk_vlg\quanlyphongkham\obj\Debug\quanlyphongkham.FORM.frmDM_THUOC.resources
+D:\VNPT\HIS OFFLINE\github\qlpk_vlg\quanlyphongkham\obj\Debug\quanlyphongkham.FORM.frmKHAM_BENH.resources
+D:\VNPT\HIS OFFLINE\github\qlpk_vlg\quanlyphongkham\obj\Debug\quanlyphongkham.FORM.frmLOAI_BENHLY.resources
+D:\VNPT\HIS OFFLINE\github\qlpk_vlg\quanlyphongkham\obj\Debug\quanlyphongkham.FORM.frmLOAI_THUOC.resources
+D:\VNPT\HIS OFFLINE\github\qlpk_vlg\quanlyphongkham\obj\Debug\quanlyphongkham.FORM.frmMain.resources
+D:\VNPT\HIS OFFLINE\github\qlpk_vlg\quanlyphongkham\obj\Debug\quanlyphongkham.FORM.frmNHAN_VIEN.resources
+D:\VNPT\HIS OFFLINE\github\qlpk_vlg\quanlyphongkham\obj\Debug\quanlyphongkham.FORM.frmPHIEU_TIEP_NHAN.resources
+D:\VNPT\HIS OFFLINE\github\qlpk_vlg\quanlyphongkham\obj\Debug\quanlyphongkham.Properties.Resources.resources
+D:\VNPT\HIS OFFLINE\github\qlpk_vlg\quanlyphongkham\obj\Debug\quanlyphongkham.Report.rptPCD_CLS.resources
+D:\VNPT\HIS OFFLINE\github\qlpk_vlg\quanlyphongkham\obj\Debug\quanlyphongkham.Report.rptToaThuoc.resources
+D:\VNPT\HIS OFFLINE\github\qlpk_vlg\quanlyphongkham\obj\Debug\quanlyphongkham.csproj.GenerateResource.Cache
+D:\VNPT\HIS OFFLINE\github\qlpk_vlg\quanlyphongkham\obj\Debug\quanlyphongkham.exe.licenses
+D:\VNPT\HIS OFFLINE\source qlpk\quanlyphongkham\bin\Debug\quanlyphongkham.exe.config
+D:\VNPT\HIS OFFLINE\source qlpk\quanlyphongkham\obj\Debug\quanlyphongkham.exe
+D:\VNPT\HIS OFFLINE\source qlpk\quanlyphongkham\obj\Debug\quanlyphongkham.pdb
+D:\VNPT\HIS OFFLINE\source qlpk\quanlyphongkham\bin\Debug\quanlyphongkham.exe
+D:\VNPT\HIS OFFLINE\source qlpk\quanlyphongkham\bin\Debug\quanlyphongkham.pdb
+D:\VNPT\HIS OFFLINE\source qlpk\quanlyphongkham\obj\Debug\quanlyphongkham.FORM.frmCAN_LAM_SAN.resources
+D:\VNPT\HIS OFFLINE\source qlpk\quanlyphongkham\obj\Debug\quanlyphongkham.FORM.frmCHUC_DANH.resources
+D:\VNPT\HIS OFFLINE\source qlpk\quanlyphongkham\obj\Debug\quanlyphongkham.FORM.frmCHUC_VU.resources
+D:\VNPT\HIS OFFLINE\source qlpk\quanlyphongkham\obj\Debug\quanlyphongkham.FORM.frmDANG_NHAP.resources
+D:\VNPT\HIS OFFLINE\source qlpk\quanlyphongkham\obj\Debug\quanlyphongkham.FORM.frmDM_LOAIVATTU.resources
+D:\VNPT\HIS OFFLINE\source qlpk\quanlyphongkham\obj\Debug\quanlyphongkham.FORM.frmDM_THUOC.resources
+D:\VNPT\HIS OFFLINE\source qlpk\quanlyphongkham\obj\Debug\quanlyphongkham.FORM.frmKHAM_BENH.resources
+D:\VNPT\HIS OFFLINE\source qlpk\quanlyphongkham\obj\Debug\quanlyphongkham.FORM.frmLOAI_BENHLY.resources
+D:\VNPT\HIS OFFLINE\source qlpk\quanlyphongkham\obj\Debug\quanlyphongkham.FORM.frmLOAI_THUOC.resources
+D:\VNPT\HIS OFFLINE\source qlpk\quanlyphongkham\obj\Debug\quanlyphongkham.FORM.frmMain.resources
+D:\VNPT\HIS OFFLINE\source qlpk\quanlyphongkham\obj\Debug\quanlyphongkham.FORM.frmNHAN_VIEN.resources
+D:\VNPT\HIS OFFLINE\source qlpk\quanlyphongkham\obj\Debug\quanlyphongkham.FORM.frmPHIEU_TIEP_NHAN.resources
+D:\VNPT\HIS OFFLINE\source qlpk\quanlyphongkham\obj\Debug\quanlyphongkham.Properties.Resources.resources
+D:\VNPT\HIS OFFLINE\source qlpk\quanlyphongkham\obj\Debug\quanlyphongkham.Report.rptPCD_CLS.resources
+D:\VNPT\HIS OFFLINE\source qlpk\quanlyphongkham\obj\Debug\quanlyphongkham.Report.rptToaThuoc.resources
+D:\VNPT\HIS OFFLINE\source qlpk\quanlyphongkham\obj\Debug\quanlyphongkham.csproj.GenerateResource.Cache
+D:\VNPT\HIS OFFLINE\source qlpk\quanlyphongkham\obj\Debug\quanlyphongkham.exe.licenses
+D:\VNPT\HIS OFFLINE\source qlpk\quanlyphongkham\obj\Debug\quanlyphongkham.csprojResolveAssemblyReference.cache
+D:\VNPT\HIS OFFLINE\source qlpk\quanlyphongkham\obj\Debug\quanlyphongkham.FORM.frmDM_NHOMVATTU.resources
+D:\VNPT\HIS OFFLINE\source qlpk\quanlyphongkham\obj\Debug\quanlyphongkham.FORM.frmDM_NUOCSANXUAT.resources
+D:\VNPT\HIS OFFLINE\source qlpk\quanlyphongkham\obj\Debug\quanlyphongkham.FORM.frmDM_KHO.resources
+D:\VNPT\HIS OFFLINE\source qlpk\quanlyphongkham\obj\Debug\quanlyphongkham.FORM.frmDM_NHASANXUAT.resources
+D:\VNPT\HIS OFFLINE\source qlpk\quanlyphongkham\obj\Debug\quanlyphongkham.FORM.frmNHAP_KHO.resources

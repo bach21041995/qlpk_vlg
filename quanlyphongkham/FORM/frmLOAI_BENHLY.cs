@@ -45,7 +45,6 @@ namespace quanlyphongkham.FORM
         {
             txtTenLBL.Text = "";
             txtMaLBL.Text = "";
-            
         }
 
         private LOAI_BENHLY LayTTLBL()

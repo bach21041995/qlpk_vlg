@@ -17,22 +17,22 @@ namespace quanlyphongkham
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            //Application.Run(new frmMain());
+            Application.Run(new frmMain());
 
-            frmDANG_NHAP dn = new frmDANG_NHAP();
-            if (dn.ShowDialog() == DialogResult.OK)
-            {
-                frmMain frm = new frmMain();
-                frm.dt = dn.dt;
-                Application.Run(frm);
-            }
+            //frmDANG_NHAP dn = new frmDANG_NHAP();
+            //if (dn.ShowDialog() == DialogResult.OK)
+            //{
+            //    frmMain frm = new frmMain();
+            //    frm.dt = dn.dt;
+            //    Application.Run(frm);
+            //}
 
 
-            if (frmMain.dx == 1)
-            {
-                frmDANG_NHAP dn2 = new frmDANG_NHAP();
-                Application.Run(dn2);
-            }
+            //if (frmMain.dx == 1)
+            //{
+            //    frmDANG_NHAP dn2 = new frmDANG_NHAP();
+            //    Application.Run(dn2);
+            //}
         }
     }
 }

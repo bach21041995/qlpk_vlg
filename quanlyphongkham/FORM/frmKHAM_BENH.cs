@@ -954,10 +954,7 @@ namespace quanlyphongkham.FORM
             }
             catch
             {
-                
             }
-            
-            
         }
 
         void TT()
@@ -1888,6 +1885,11 @@ namespace quanlyphongkham.FORM
                     pnLSK.Enabled = false;
                 }
             }
+        }
+
+        private void cmSDL_LSK_Opening(object sender, CancelEventArgs e)
+        {
+
         }
     }
 }

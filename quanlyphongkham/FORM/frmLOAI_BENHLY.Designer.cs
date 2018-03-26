@@ -65,7 +65,6 @@
             // 
             // groupControl1
             // 
-            this.groupControl1.Controls.Add(this.pnEdit);
             this.groupControl1.Controls.Add(this.txtTim);
             this.groupControl1.Controls.Add(this.label4);
             this.groupControl1.Controls.Add(this.btnRefresh);
@@ -91,7 +90,7 @@
             this.pnEdit.Controls.Add(this.txtMaLBL);
             this.pnEdit.Controls.Add(this.label2);
             this.pnEdit.Controls.Add(this.label1);
-            this.pnEdit.Location = new System.Drawing.Point(381, 47);
+            this.pnEdit.Location = new System.Drawing.Point(303, 7);
             this.pnEdit.Name = "pnEdit";
             this.pnEdit.Size = new System.Drawing.Size(362, 255);
             this.pnEdit.TabIndex = 9;
@@ -270,6 +269,7 @@
             // panelControl1
             // 
             this.panelControl1.Controls.Add(this.gdLBL);
+            this.panelControl1.Controls.Add(this.pnEdit);
             this.panelControl1.Location = new System.Drawing.Point(0, 47);
             this.panelControl1.Name = "panelControl1";
             this.panelControl1.Size = new System.Drawing.Size(672, 283);
@@ -278,11 +278,11 @@
             // gdLBL
             // 
             this.gdLBL.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.gdLBL.Location = new System.Drawing.Point(2, 2);
+            this.gdLBL.Location = new System.Drawing.Point(4, 4);
             this.gdLBL.LookAndFeel.SkinName = "Office 2013 Light Gray";
             this.gdLBL.MainView = this.gridView1;
             this.gdLBL.Name = "gdLBL";
-            this.gdLBL.Size = new System.Drawing.Size(668, 279);
+            this.gdLBL.Size = new System.Drawing.Size(664, 274);
             this.gdLBL.TabIndex = 0;
             this.gdLBL.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridView1});

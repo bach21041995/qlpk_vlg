@@ -17,7 +17,7 @@ namespace quanlyphongkham.DAO
         public DataTable getDSThuoc()
         {
             SqlConnection conn = new SqlConnection(connecDB.connectionStr);
-            SqlCommand cmd = new SqlCommand("getDM_THUOC", conn);
+            SqlCommand cmd = new SqlCommand("get_VatTu", conn);
             DataTable dt = new DataTable();
             cmd.CommandType = CommandType.StoredProcedure;
             conn.Open();
@@ -26,16 +26,15 @@ namespace quanlyphongkham.DAO
             adapter.Fill(dt);
             conn.Close();
             return dt;
-            //string query = " select THUOC_ID, THUOC_TEN, THUOC_HDSD, THUOC_CONGDUNG, THUOC_DVT, THUOC_GIA, LT_TEN"
-            //+ " from DM_THUOC a, LOAI_THUOC b where a.LT_ID = b.LT_ID order by THUOC_ID";
-            //return connecDB.ExecuteQuery(query);
+           
         }
+
 
         public string insertMaThuoc(string malt)
         {
             SqlConnection conn = new SqlConnection(connecDB.connectionStr);
             SqlCommand cmd = new SqlCommand("THUOC_ID_auto", conn);
-           
+
             cmd.CommandType = CommandType.StoredProcedure;
             cmd.Parameters.Add("@malt", SqlDbType.NVarChar, 20);
             cmd.Parameters.Add("@ma_next", SqlDbType.NVarChar, 20);
@@ -53,31 +52,31 @@ namespace quanlyphongkham.DAO
         public string getIDTHUOCbyTEN(string ten)
         {
             SqlConnection conn = new SqlConnection(connecDB.connectionStr);
-            SqlCommand cmd = new SqlCommand("getIDTHUOCbyTEN", conn);
+            SqlCommand cmd = new SqlCommand("get_VTTheoTen", conn);
 
             cmd.CommandType = CommandType.StoredProcedure;
-            cmd.Parameters.Add("@ten", SqlDbType.NVarChar, 60);
-            cmd.Parameters.Add("@id", SqlDbType.NVarChar, 20);
-            cmd.Parameters["@id"].Direction = ParameterDirection.Output;
-            cmd.Parameters["@ten"].Value = ten;
-            cmd.Parameters["@id"].Value = "";
+            cmd.Parameters.Add("@vt_ten", SqlDbType.NVarChar, 150);
+            cmd.Parameters.Add("@vt_id", SqlDbType.NVarChar, 20);
+            cmd.Parameters["@vt_id"].Direction = ParameterDirection.Output;
+            cmd.Parameters["@vt_ten"].Value = ten;
+            cmd.Parameters["@vt_id"].Value = "";
             conn.Open();
             cmd.ExecuteNonQuery();
-            string mathuoc = cmd.Parameters["@id"].Value.ToString();
+            string mathuoc = cmd.Parameters["@vt_id"].Value.ToString();
             conn.Close();
 
             return mathuoc;
         }
 
-        public DataTable TimThuoc(string tk)
+        public DataTable TimKiemVatTu(string tk)
         {
             string t = tk.ToLower();
             SqlConnection conn = new SqlConnection(connecDB.connectionStr);
-            SqlCommand cmd = new SqlCommand("timDM_THUOC", conn);
+            SqlCommand cmd = new SqlCommand("TimKiemVatTu", conn);
             DataTable dt = new DataTable();
             cmd.CommandType = CommandType.StoredProcedure;
-            cmd.Parameters.Add("@tk", SqlDbType.NVarChar, 30);
-            cmd.Parameters["@tk"].Value = t;
+            cmd.Parameters.Add("@str_Timkiem", SqlDbType.NVarChar, 50);
+            cmd.Parameters["@str_Timkiem"].Value = t;
             conn.Open();
             cmd.ExecuteNonQuery();
             SqlDataAdapter adapter = new SqlDataAdapter(cmd);
@@ -143,35 +142,40 @@ namespace quanlyphongkham.DAO
             return result > 0;*/
         }
 
-        public bool InsertThuoc(DM_THUOC t)
+        public bool InsertThuoc(DM_VATTU vt)
         {
-            if (KiemTraNhapLieu(t))
-            {
+           
                 try
                 {
                     SqlConnection conn = new SqlConnection(connecDB.connectionStr);
-                    SqlCommand cmd = new SqlCommand("themDM_THUOC", conn);
+                    SqlCommand cmd = new SqlCommand("insertVatTu", conn);
                     cmd.CommandType = CommandType.StoredProcedure;
-                    //cmd.Parameters.Add("@mathuoc", SqlDbType.NVarChar, 20);
-                    //cmd.Parameters["@mathuoc"].Value = mt;
-                    cmd.Parameters.Add("@THUOC_ID", SqlDbType.NVarChar, 20);
-                    cmd.Parameters.Add("@LT_ID", SqlDbType.NVarChar, 10);
-                    cmd.Parameters.Add("@THUOC_TEN", SqlDbType.NVarChar, 30);
-                    cmd.Parameters.Add("@THUOC_HDSD", SqlDbType.NVarChar, 50);
-                    cmd.Parameters.Add("@THUOC_DVT", SqlDbType.NVarChar, 10);
-                    cmd.Parameters.Add("@THUOC_CONGDUNG", SqlDbType.NVarChar, 50);
-                    cmd.Parameters.Add("@THUOC_GIA", SqlDbType.Float);
-                    cmd.Parameters.Add("@THUOC_TRANGTHAI", SqlDbType.Int);
-                    cmd.Parameters.Add("@THUOC_CACHDUNG", SqlDbType.NVarChar, 60);
-                    cmd.Parameters["@THUOC_ID"].Value = t.Id_thuoc;
-                    cmd.Parameters["@LT_ID"].Value = t.Id_lt;
-                    cmd.Parameters["@THUOC_TEN"].Value = t.Thuoc_ten;
-                    cmd.Parameters["@THUOC_HDSD"].Value = t.Thuoc_hdsd;
-                    cmd.Parameters["@THUOC_DVT"].Value = t.Thuoc_dvt;
-                    cmd.Parameters["@THUOC_CONGDUNG"].Value = t.Thuoc_congdung;
-                    cmd.Parameters["@THUOC_GIA"].Value = t.Thuoc_gia;
-                    cmd.Parameters["@THUOC_TRANGTHAI"].Value = t.Thuoc_trangthai;
-                    cmd.Parameters["@THUOC_CACHDUNG"].Value = t.Thuoc_cachdung;
+                    cmd.Parameters.Add("@vt_id", SqlDbType.NVarChar, 20);
+                    cmd.Parameters.Add("@vt_ten", SqlDbType.NVarChar, 150);
+                    cmd.Parameters.Add("@vt_dvt", SqlDbType.NVarChar, 20);
+                    cmd.Parameters.Add("@vt_cachdung", SqlDbType.NVarChar, 100);
+                    cmd.Parameters.Add("@vt_giaban", SqlDbType.Float);
+                    cmd.Parameters.Add("@vt_hoatchat", SqlDbType.NVarChar,100);
+                    cmd.Parameters.Add("@vt_hamluong", SqlDbType.NVarChar, 100);
+                    cmd.Parameters.Add("@vt_qcdonggoi", SqlDbType.NVarChar,100);
+                    cmd.Parameters.Add("@vt_ghichu", SqlDbType.NVarChar, 100);
+                    cmd.Parameters.Add("@nuocsx_id", SqlDbType.NVarChar, 20);
+                    cmd.Parameters.Add("@nsx_id", SqlDbType.NVarChar, 20);
+                    cmd.Parameters.Add("@nvt_id", SqlDbType.NVarChar, 20);
+
+                    cmd.Parameters["@vt_id"].Value = vt.Vt_id;
+                    cmd.Parameters["@vt_ten"].Value = vt.Vt_ten;
+                    cmd.Parameters["@vt_dvt"].Value = vt.Vt_dvt;
+                    cmd.Parameters["@vt_giaban"].Value = vt.Vt_giaban;
+                    cmd.Parameters["@vt_cachdung"].Value = vt.Vt_cachdung;
+                    cmd.Parameters["@vt_hoatchat"].Value = vt.Vt_hoatchat;
+                    cmd.Parameters["@vt_hamluong"].Value = vt.Vt_hamluong;
+                    cmd.Parameters["@vt_qcdonggoi"].Value = vt.Qcdonggoi;
+                    cmd.Parameters["@vt_ghichu"].Value = vt.Vt_ghichu;
+                    cmd.Parameters["@nuocsx_id"].Value = vt.Nuocsx;
+                    cmd.Parameters["@nsx_id"].Value = vt.Nhasx;
+                    cmd.Parameters["@nvt_id"].Value = vt.Nhomvt;
+
                     conn.Open();
                     int result = cmd.ExecuteNonQuery();
                     conn.Close();
@@ -185,14 +189,13 @@ namespace quanlyphongkham.DAO
                 }
                 catch
                 {
-                    if (KiemTraTrungTenThuoc(t).Rows.Count == 0)
+                    if (KiemTraTrungTenThuoc(vt) != 0)
                     {
                         MessageBox.Show("Thêm thành công", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                        
                     }
                     else
                     {
-                        MessageBox.Show("Thêm không thành công do tên thuốc đã tồn tại", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        MessageBox.Show("Thêm không thành công do mã thuốc đã tồn tại", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     }
                 
                     /*if(KiemTraTrungSDT(nv).Rows.Count == 0)
@@ -204,10 +207,8 @@ namespace quanlyphongkham.DAO
                         MessageBox.Show("Thêm không thành công do Số điện thoại của giáo viên đã tồn tại", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     }*/
                 }
-            }
             return false;
         }
-
 
 
         public bool KiemTraNhapLieu(DM_THUOC t)
@@ -221,43 +222,58 @@ namespace quanlyphongkham.DAO
             return true;
         }
 
-        public DataTable KiemTraTrungTenThuoc(DM_THUOC t)
+        public int KiemTraTrungTenThuoc(DM_VATTU vt)
         {
-            string query = "select * from DM_THUOC where THUOC_TEN = '" + t.Thuoc_ten + "' and THUOC_TRANGTHAI = '1'";
-            DataTable dt = connecDB.ExecuteQuery(query);
-            return dt;
+            SqlConnection conn = new SqlConnection(connecDB.connectionStr);
+            SqlCommand cmd = new SqlCommand("insertVatTu", conn);
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.Parameters.Add("@vt_id", SqlDbType.NVarChar, 20);
+            cmd.Parameters["@nvt_id"].Value = vt.Vt_id;
+
+            conn.Open();
+            int result = cmd.ExecuteNonQuery();
+            conn.Close();
+            return result;
         }
 
-        public bool UpdateThuoc(DM_THUOC t)
+        public bool UpdateThuoc(DM_VATTU vt)
         {
-            if (KiemTraNhapLieu(t))
+            try
             {
                 SqlConnection conn = new SqlConnection(connecDB.connectionStr);
-                SqlCommand cmd = new SqlCommand("suaDM_THUOC", conn);
+                SqlCommand cmd = new SqlCommand("updateVatTu", conn);
                 cmd.CommandType = CommandType.StoredProcedure;
-                //cmd.Parameters.Add("@mathuoc", SqlDbType.NVarChar, 20);
-                //cmd.Parameters["@mathuoc"].Value = mt;
-                cmd.Parameters.Add("@THUOC_ID", SqlDbType.NVarChar, 20);
-                cmd.Parameters.Add("@LT_ID", SqlDbType.NVarChar, 10);
-                cmd.Parameters.Add("@THUOC_TEN", SqlDbType.NVarChar, 30);
-                cmd.Parameters.Add("@THUOC_HDSD", SqlDbType.NVarChar, 50);
-                cmd.Parameters.Add("@THUOC_DVT", SqlDbType.NVarChar, 10);
-                cmd.Parameters.Add("@THUOC_CONGDUNG", SqlDbType.NVarChar, 50);
-                cmd.Parameters.Add("@THUOC_GIA", SqlDbType.Float);
-                cmd.Parameters.Add("@THUOC_TRANGTHAI", SqlDbType.Int);
-                cmd.Parameters["@THUOC_ID"].Value = t.Id_thuoc;
-                cmd.Parameters["@LT_ID"].Value = t.Id_lt;
-                cmd.Parameters["@THUOC_TEN"].Value = t.Thuoc_ten;
-                cmd.Parameters["@THUOC_HDSD"].Value = t.Thuoc_hdsd;
-                cmd.Parameters["@THUOC_DVT"].Value = t.Thuoc_dvt;
-                cmd.Parameters["@THUOC_CONGDUNG"].Value = t.Thuoc_congdung;
-                cmd.Parameters["@THUOC_GIA"].Value = t.Thuoc_gia;
-                cmd.Parameters["@THUOC_TRANGTHAI"].Value = t.Thuoc_trangthai;
+                cmd.Parameters.Add("@vt_id", SqlDbType.NVarChar, 20);
+                cmd.Parameters.Add("@vt_ten", SqlDbType.NVarChar, 150);
+                cmd.Parameters.Add("@vt_dvt", SqlDbType.NVarChar, 20);
+                cmd.Parameters.Add("@vt_cachdung", SqlDbType.NVarChar, 100);
+                cmd.Parameters.Add("@vt_giaban", SqlDbType.Float);
+                cmd.Parameters.Add("@vt_hoatchat", SqlDbType.NVarChar, 100);
+                cmd.Parameters.Add("@vt_hamluong", SqlDbType.NVarChar, 100);
+                cmd.Parameters.Add("@vt_qcdonggoi", SqlDbType.NVarChar, 100);
+                cmd.Parameters.Add("@vt_ghichu", SqlDbType.NVarChar, 100);
+                cmd.Parameters.Add("@nuocsx_id", SqlDbType.NVarChar, 20);
+                cmd.Parameters.Add("@nsx_id", SqlDbType.NVarChar, 20);
+                cmd.Parameters.Add("@nvt_id", SqlDbType.NVarChar, 20);
+
+                cmd.Parameters["@vt_id"].Value = vt.Vt_id;
+                cmd.Parameters["@vt_ten"].Value = vt.Vt_ten;
+                cmd.Parameters["@vt_dvt"].Value = vt.Vt_dvt;
+                cmd.Parameters["@vt_giaban"].Value = vt.Vt_giaban;
+                cmd.Parameters["@vt_cachdung"].Value = vt.Vt_cachdung;
+                cmd.Parameters["@vt_hoatchat"].Value = vt.Vt_hoatchat;
+                cmd.Parameters["@vt_hamluong"].Value = vt.Vt_hamluong;
+                cmd.Parameters["@vt_qcdonggoi"].Value = vt.Qcdonggoi;
+                cmd.Parameters["@vt_ghichu"].Value = vt.Vt_ghichu;
+                cmd.Parameters["@nuocsx_id"].Value = vt.Nuocsx;
+                cmd.Parameters["@nsx_id"].Value = vt.Nhasx;
+                cmd.Parameters["@nvt_id"].Value = vt.Nhomvt;
                 conn.Open();
                 int result = cmd.ExecuteNonQuery();
                 conn.Close();
                 return result > 0;
-            }
+              }
+            catch { }
             return true;
         }
 
