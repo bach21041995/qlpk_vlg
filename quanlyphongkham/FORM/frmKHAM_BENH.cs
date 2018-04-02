@@ -15,6 +15,8 @@ using DevExpress.XtraPrinting;
 using DevExpress.XtraGrid;
 using DevExpress.XtraTab;
 using DevExpress.XtraGrid.Views.Grid;
+using System.IO;
+using System.Drawing.Imaging;
 
 namespace quanlyphongkham.FORM
 {
@@ -46,6 +48,8 @@ namespace quanlyphongkham.FORM
 
         bool themtt = true;
 
+        bool themttpk = true;
+
         bool delete = false;
 
         bool delete_pcd = false;
@@ -57,15 +61,21 @@ namespace quanlyphongkham.FORM
         string kbid = "";
         int ttid;
 
+        int suattpk = 0;
         int suatt = 0;
+
+        string bs = (frmDANG_NHAP.idnv).ToString();
 
         void loadPTN()
         {
+            
+
             DateTime ht = System.DateTime.Now;
             string ngay = ht.ToShortDateString();
             ngay = ngay.Replace("/", "");
 
-            gdPTNH.DataSource = daoPTN.getPTN_NGAY(ngay);
+
+            gdPTNH.DataSource = daoPTN.getPTN_NGAY(ngay, bs);
             xuly(false);
 
             //gdPTN.DataSource = daoPTN.getDSPTN();
@@ -107,7 +117,7 @@ namespace quanlyphongkham.FORM
             string ngay = ht.ToShortDateString();
             ngay = ngay.Replace("/", "");
 
-            gdPTNH.DataSource = daoKB.getKB_NGAY(ngay);
+            gdPTNH.DataSource = daoKB.getKB_NGAY(ngay, bs);
             xuly(false);
         }
 
@@ -117,7 +127,7 @@ namespace quanlyphongkham.FORM
             string ngay = ht.ToShortDateString();
             ngay = ngay.Replace("/", "");
 
-            gdPTNH.DataSource = daoKB.getKB_NGAY_DK(ngay);
+            gdPTNH.DataSource = daoKB.getKB_NGAY_DK(ngay, bs);
             xuly(false);
         }
 
@@ -128,7 +138,7 @@ namespace quanlyphongkham.FORM
             string ngay = ht.ToShortDateString();
             ngay = ngay.Replace("/", "");
 
-            gdPTNH.DataSource = daoKB.getKB_NGAY_KX(ngay);
+            gdPTNH.DataSource = daoKB.getKB_NGAY_KX(ngay, bs);
             xuly(false);
         }
 
@@ -167,7 +177,7 @@ namespace quanlyphongkham.FORM
 
         void dongbang()
         {
-            pnKB.Enabled = false;
+            //pnKB.Enabled = false;
             pnTT.Enabled = false;
             pnCDCLS.Enabled = false;
             //pnLSK.Enabled = false;
@@ -383,16 +393,29 @@ namespace quanlyphongkham.FORM
             
         }
 
+        private TOA_THUOC LayTTTTPK()
+        {
+            string kbid = txtIdKB.Text;
+            //string ten = "";
+            string loidan = txtLoiDanPK.Text;
+            int tt = 1;
+            DateTime ngay = Convert.ToDateTime(DateTK.Text);
+            string ngay2 = ngay.ToShortDateString();
+
+            TOA_THUOC t = new TOA_THUOC(kbid, loidan, tt, ngay2);
+            return t;
+        }
+
         private TOA_THUOC LayTTTT()
         {
-            string kbid = txtIdTT_KB.Text;
-            string ten = "";
+            string kbid = txtIdKB.Text;
+            //string ten = "";
             string loidan = txtLoiDan.Text;
             int tt = 1;
             DateTime ngay = Convert.ToDateTime(DateTK.Text);
             string ngay2 = ngay.ToShortDateString();
 
-            TOA_THUOC t = new TOA_THUOC(kbid, ten, loidan, tt, ngay2);
+            TOA_THUOC t = new TOA_THUOC(kbid, loidan, tt, ngay2);
             return t;
         }
 
@@ -400,15 +423,17 @@ namespace quanlyphongkham.FORM
         {
             CT_TOATHUOC t = new CT_TOATHUOC();
             //int id = daoTT.getIDTT_MAX();
-            int id = daoTT.getTT_ID_MAX_by_KBID(txtIdTT_KB.Text);
+            int id = daoTT.getTT_ID_MAX_by_KBID(txtIdKB.Text);
             int idtt = id;
             t.Id_tt = idtt;
             t.Id_thuoc = daoTHUOC.getIDTHUOCbyTEN(txtTenThuoc.Text);
             t.Ctt_songayuong = int.Parse(txtSoNgay.Text);
+            t.Ctt_dangthuoc = txtDangThuoc.Text;
+            t.Ctt_dvt = txtDVT.Text;
             t.Ctt_cachdung = txtCachDung.Text;
-            t.Ctt_sang = int.Parse(txtSang.Text);
-            t.Ctt_trua = int.Parse(txtTrua.Text);
-            t.Ctt_chieu = int.Parse(txtChieu.Text);
+            t.Ctt_sang = float.Parse(txtSang.Text);
+            t.Ctt_trua = float.Parse(txtTrua.Text);
+            t.Ctt_chieu = float.Parse(txtChieu.Text);
             t.Ctt_toi = int.Parse(txtToi.Text);
             int sl = int.Parse(txtSL.Text);
             t.Ctt_sl = sl;
@@ -425,10 +450,12 @@ namespace quanlyphongkham.FORM
             t.Id_tt = idtt;
             t.Id_thuoc = daoTHUOC.getIDTHUOCbyTEN(txtTenThuoc.Text);
             t.Ctt_songayuong = int.Parse(txtSoNgay.Text);
+            t.Ctt_dangthuoc = txtDangThuoc.Text;
+            t.Ctt_dvt = txtDVT.Text;
             t.Ctt_cachdung = txtCachDung.Text;
-            t.Ctt_sang = int.Parse(txtSang.Text);
-            t.Ctt_trua = int.Parse(txtTrua.Text);
-            t.Ctt_chieu = int.Parse(txtChieu.Text);
+            t.Ctt_sang = float.Parse(txtSang.Text);
+            t.Ctt_trua = float.Parse(txtTrua.Text);
+            t.Ctt_chieu = float.Parse(txtChieu.Text);
             t.Ctt_toi = int.Parse(txtToi.Text);
             int sl = int.Parse(txtSL.Text);
             t.Ctt_sl = sl;
@@ -441,7 +468,7 @@ namespace quanlyphongkham.FORM
         private KHAM_BENH LayTTKB()
         {
             string kbid = daoKB.insertMaKB(txtMaBN2.Text);
-            txtIdTT_KB.Text = kbid;
+            txtIdKB.Text = kbid;
             string tnid = gridView3.GetFocusedRowCellValue("TN_ID").ToString();
             DateTime htk = Convert.ToDateTime(DateTK.Text);
             string htk2 = htk.ToShortDateString();
@@ -450,8 +477,9 @@ namespace quanlyphongkham.FORM
             int tt = 1;
             string kl = txtKetluan.Text;
             string bp = txtBenhphu.Text;
+            string tc = txtTrieuChung.Text;
 
-            KHAM_BENH t = new KHAM_BENH(kbid, tnid, htk2, ngay2, tt, kl, bp);
+            KHAM_BENH t = new KHAM_BENH(kbid, tnid, htk2, ngay2, tt, kl, bp, tc);
             return t;
         }
 
@@ -466,8 +494,9 @@ namespace quanlyphongkham.FORM
             int tt = 1;
             string kl = txtKetluan.Text;
             string bp = txtBenhphu.Text;
+            string tc = txtTrieuChung.Text;
 
-            KHAM_BENH t = new KHAM_BENH(kbid, tnid, htk2, ngay2, tt, kl, bp);
+            KHAM_BENH t = new KHAM_BENH(kbid, tnid, htk2, ngay2, tt, kl, bp, tc);
             return t;
         }
 
@@ -482,8 +511,9 @@ namespace quanlyphongkham.FORM
             int tt = 2;
             string kl = txtKetluan.Text;
             string bp = txtBenhphu.Text;
+            string tc = txtTrieuChung.Text;
 
-            KHAM_BENH t = new KHAM_BENH(kbid, tnid, htk2, ngay2, tt, kl, bp);
+            KHAM_BENH t = new KHAM_BENH(kbid, tnid, htk2, ngay2, tt, kl, bp, tc);
             return t;
         }
 
@@ -492,12 +522,14 @@ namespace quanlyphongkham.FORM
         private PHIEU_TIEP_NHAN LayTTPTN_DK()
         {
             string ma = gridView3.GetFocusedRowCellValue("TN_ID").ToString();
-            int idnv = 2;
-            int idbn = int.Parse(txtMaBN2.Text);
-            string idbs = "2";
-            int idbs2 = int.Parse(idbs);
+            int idnv = int.Parse(gridView3.GetFocusedRowCellValue("NV_ID").ToString()); ;
+            string idbn = txtMaBN2.Text;
+            int idbs = frmDANG_NHAP.idnv;
+            string idba = "1";
+            //int idbs2 = int.Parse(idbs);
             int stt = int.Parse(txtSTT2.Text);
-            string dvk = "";
+            string dvk = "1";
+            int iddvk = 1;
             int tuoithang = int.Parse(txtTuoithang2.Text);
             int tuoinam = int.Parse(txtTuoinam2.Text);
             string ngaygio = System.DateTime.Now.ToShortDateString();
@@ -512,7 +544,7 @@ namespace quanlyphongkham.FORM
             float bmi = float.Parse(txtBMI.Text);
             int tt = 1;
 
-            PHIEU_TIEP_NHAN t = new PHIEU_TIEP_NHAN(ma, idnv, idbn, stt, idbs2, dvk, tuoithang, tuoinam, ngaygio, mach, nhietdo, nhiptho, huyetap, chieucao, cannang, bmi, tt);
+            PHIEU_TIEP_NHAN t = new PHIEU_TIEP_NHAN(ma, idnv, idbn, idba, iddvk, stt, idbs, dvk, tuoithang, tuoinam, ngaygio, mach, nhietdo, nhiptho, huyetap, chieucao, cannang, bmi, tt);
 
             return t;
         }
@@ -522,13 +554,15 @@ namespace quanlyphongkham.FORM
         private PHIEU_TIEP_NHAN LayTTPTN_KX()
         {
             string ma = gridView3.GetFocusedRowCellValue("TN_ID").ToString();
-            int idnv = 2;
-            int idbn = int.Parse(txtMaBN2.Text);
+            int idnv = int.Parse(gridView3.GetFocusedRowCellValue("NV_ID").ToString());
+            string idbn = txtMaBN2.Text;
+            string idba = "0";
             //string idbs = gridView3.GetFocusedRowCellValue("NV_ID").ToString();
             int idbs = frmDANG_NHAP.idnv;
             //int idbs2 = int.Parse(idbs);
             int stt = int.Parse(txtSTT2.Text);
-            string dvk = "";
+            string dvk = "1";
+            int iddvk = 1;
             int tuoithang = int.Parse(txtTuoithang2.Text);
             int tuoinam = int.Parse(txtTuoinam2.Text);
             string ngaygio = System.DateTime.Now.ToShortDateString();
@@ -543,7 +577,7 @@ namespace quanlyphongkham.FORM
             float bmi = float.Parse(txtBMI.Text);
             int tt = 2;
 
-            PHIEU_TIEP_NHAN t = new PHIEU_TIEP_NHAN(ma, idnv, idbn, stt, idbs, dvk, tuoithang, tuoinam, ngaygio, mach, nhietdo, nhiptho, huyetap, chieucao, cannang, bmi, tt);
+            PHIEU_TIEP_NHAN t = new PHIEU_TIEP_NHAN(ma, idnv, idbn, idba, iddvk, stt, idbs, dvk, tuoithang, tuoinam, ngaygio, mach, nhietdo, nhiptho, huyetap, chieucao, cannang, bmi, tt);
 
             return t;
         }
@@ -551,8 +585,8 @@ namespace quanlyphongkham.FORM
         private CT_BENHLY LayTTCTBL()
         {
             CT_BENHLY t = new CT_BENHLY();
-            t.Id_kb = txtMaICD.Text; //test
-            t.Id_bl = txtIdTT_KB.Text; //test
+            t.Id_kb = txtIdKB.Text; //test
+            t.Id_bl = txtMaICD.Text; //test
             t.Ctbl_chuyenmon = txtChuyenmon.Text;
             t.Ctbl_mucdo = txtMucdo.Text;
             t.Ctbl_trangthai = 1;
@@ -562,8 +596,8 @@ namespace quanlyphongkham.FORM
         private CT_BENHLY LayTTCTBL_SUA()
         {
             CT_BENHLY t = new CT_BENHLY();
-            t.Id_kb = txtMaICD.Text;  //test
-            t.Id_bl = gridView3.GetFocusedRowCellValue("KB_ID").ToString();  //test
+            t.Id_kb = gridView3.GetFocusedRowCellValue("KB_ID").ToString();  //test
+            t.Id_bl = txtMaICD.Text;  //test
             t.Ctbl_chuyenmon = txtChuyenmon.Text;
             t.Ctbl_mucdo = txtMucdo.Text;
             t.Ctbl_trangthai = 1;
@@ -574,7 +608,7 @@ namespace quanlyphongkham.FORM
         {
             CT_BENHLY t = new CT_BENHLY();
             t.Id_bl = txtMaBP.Text;
-            t.Id_kb = txtIdTT_KB.Text;
+            t.Id_kb = txtIdKB.Text;
             t.Ctbl_chuyenmon = "";
             t.Ctbl_mucdo = "";
             t.Ctbl_trangthai = 2;
@@ -594,7 +628,7 @@ namespace quanlyphongkham.FORM
 
         private PHIEU_CHI_DINH LayTTPCD()
         {
-            string idkb = txtIdTT_KB.Text;
+            string idkb = txtIdKB.Text;
             string ngaygio = DatePCD.Text;
             int tt = 0;
             PHIEU_CHI_DINH t = new PHIEU_CHI_DINH(idkb, ngaygio, tt);
@@ -625,7 +659,7 @@ namespace quanlyphongkham.FORM
             pnKB.Enabled = true;
             //if (daoKB.InsertKB(t))
            // {
-            //    MessageBox.Show(txtIdTT_KB.Text);
+            //    MessageBox.Show(txtIdKB.Text);
             //}
 
         }
@@ -686,16 +720,20 @@ namespace quanlyphongkham.FORM
             CT_BENHLY cp = LayTTCTBL_P();
             
             PHIEU_TIEP_NHAN p = LayTTPTN_DK();
-            if(dieukien == true)
+            
+            if (dieukien == true)
             {
-                if(daoKB.InsertKB(t))
+                
+                if (daoKB.InsertKB(t))
                 {
-                    if(txtMaICD.Text == "" || txtICD.Text == "")
+                    MessageBox.Show("Lỗi");
+                    if (txtMaICD.Text == "" || txtICD.Text == "")
                     {
                         MessageBox.Show("Chưa nhập chuẩn đoán ICD");
                     }
                     else
                     {
+                        
                         daoCTBL.InsertCTBL(c);
                         //daoCTBL.InsertCTBL(cp);
                         daoPTN.UpdatePTN_DK(p);
@@ -705,7 +743,7 @@ namespace quanlyphongkham.FORM
                         btnKetoa.Enabled = true;
                         btnLapPCD.Enabled = true;
                         gdPTNH.Enabled = true;
-                        gcPCD.DataSource = daoPCD.getPCD_by_KBID(txtIdTT_KB.Text);
+                        gcPCD.DataSource = daoPCD.getPCD_by_KBID(txtIdKB.Text);
                         pnTT.Enabled = true;
                         pnCDCLS.Enabled = true;
                         pnLSK.Enabled = true;
@@ -820,13 +858,14 @@ namespace quanlyphongkham.FORM
             {
                 if (cbTT.Text == "Chờ khám")
                 {
+                    btnKham.Enabled = true;
                     txtSTT2.Text = gridView3.GetFocusedRowCellValue("TN_STT").ToString();
                     txtMaBN2.Text = gridView3.GetFocusedRowCellValue("BN_ID").ToString();
                     txtTen2.Text = gridView3.GetFocusedRowCellValue("BN_HOTEN").ToString();
                     txtCDCLS_TENBN.Text = gridView3.GetFocusedRowCellValue("BN_HOTEN").ToString();
-                    txtCMT2.Text = gridView3.GetFocusedRowCellValue("BN_CMT").ToString();
+                    //txtCMT2.Text = gridView3.GetFocusedRowCellValue("BN_CMT").ToString();
                     //txtSDT2.Text = gridView3.GetFocusedRowCellValue("BN_SDT").ToString();
-                    txtDiachi2.Text = gridView3.GetFocusedRowCellValue("BN_DIACHI").ToString();
+                    lbDiachi.Text = gridView3.GetFocusedRowCellValue("BN_DIACHI").ToString();
                     //DateNS2.Text = gridView3.GetFocusedRowCellValue("BN_NGAYSINH").ToString();
                     cbGioitinh2.Text = gridView3.GetFocusedRowCellValue("BN_GIOITINH").ToString();
                     txtCDCLS_GT.Text = gridView3.GetFocusedRowCellValue("BN_GIOITINH").ToString();
@@ -848,21 +887,23 @@ namespace quanlyphongkham.FORM
                     txtCannang.Text = gridView3.GetFocusedRowCellValue("TN_CANNANG").ToString();
                     txtBMI.Text = gridView3.GetFocusedRowCellValue("TN_BMI").ToString();
 
-                    gdToa.DataSource = daoTT.getTTbyBN(int.Parse(gridView3.GetFocusedRowCellValue("BN_ID").ToString()));
+                    gdToa.DataSource = daoTT.getTTbyBN(gridView3.GetFocusedRowCellValue("BN_ID").ToString());
 
-                    btnKham.Enabled = true;
+                    
+                    //btnKham.Enabled = true;
 
                     kbid = daoKB.getKBID_by_TNID(gridView3.GetFocusedRowCellValue("TN_ID").ToString());
                 }
                 else if (cbTT.Text == "Đang khám")
                 {
+                    btnSua.Enabled = true;
                     txtSTT2.Text = gridView3.GetFocusedRowCellValue("TN_STT").ToString();
                     txtMaBN2.Text = gridView3.GetFocusedRowCellValue("BN_ID").ToString();
                     txtTen2.Text = gridView3.GetFocusedRowCellValue("BN_HOTEN").ToString();
                     txtCDCLS_TENBN.Text = gridView3.GetFocusedRowCellValue("BN_HOTEN").ToString();
-                    txtCMT2.Text = gridView3.GetFocusedRowCellValue("BN_CMT").ToString();
+                    //txtCMT2.Text = gridView3.GetFocusedRowCellValue("BN_CMT").ToString();
                     //txtSDT2.Text = gridView3.GetFocusedRowCellValue("BN_SDT").ToString();
-                    txtDiachi2.Text = gridView3.GetFocusedRowCellValue("BN_DIACHI").ToString();
+                    lbDiachi.Text = gridView3.GetFocusedRowCellValue("BN_DIACHI").ToString();
                     //DateNS2.Text = gridView3.GetFocusedRowCellValue("BN_NGAYSINH").ToString();
                     cbGioitinh2.Text = gridView3.GetFocusedRowCellValue("BN_GIOITINH").ToString();
                     txtCDCLS_GT.Text = gridView3.GetFocusedRowCellValue("BN_GIOITINH").ToString();
@@ -884,7 +925,8 @@ namespace quanlyphongkham.FORM
                     txtCannang.Text = gridView3.GetFocusedRowCellValue("TN_CANNANG").ToString();
                     txtBMI.Text = gridView3.GetFocusedRowCellValue("TN_BMI").ToString();
                     string kb = gridView3.GetFocusedRowCellValue("KB_ID").ToString();
-                    txtIdTT_KB.Text = gridView3.GetFocusedRowCellValue("KB_ID").ToString();
+                    txtIdKB.Text = gridView3.GetFocusedRowCellValue("KB_ID").ToString();
+
 
                     string icd = daoKB.getBL_ICD(kb);
                     string[] icd_split = icd.Split('/');
@@ -898,14 +940,14 @@ namespace quanlyphongkham.FORM
                     txtMaBP.Text = bp_split[0];
                     txtBenhphu.Text = gridView3.GetFocusedRowCellValue("KB_BENHPHU").ToString();
 
-                    gdToa.DataSource = daoTT.getTTbyBN(int.Parse(gridView3.GetFocusedRowCellValue("BN_ID").ToString()));
+                    gdToa.DataSource = daoTT.getTTbyBN(gridView3.GetFocusedRowCellValue("BN_ID").ToString());
 
-                    gcPCD.DataSource = daoPCD.getPCD_by_KBID(txtIdTT_KB.Text);
-                    string idtt = daoTT.getTT_ID_MAX_by_KBID(txtIdTT_KB.Text).ToString();
+                    gcPCD.DataSource = daoPCD.getPCD_by_KBID(txtIdKB.Text);
+                    string idtt = daoTT.getTT_ID_MAX_by_KBID(txtIdKB.Text).ToString();
 
                     gcThuoc.DataSource = daoCTTT.getCT_TOATHUOCbyID(idtt);
 
-                    btnSua.Enabled = true;
+                    
 
                     kbid = daoKB.getKBID_by_TNID(gridView3.GetFocusedRowCellValue("TN_ID").ToString());
                 }
@@ -915,9 +957,9 @@ namespace quanlyphongkham.FORM
                     txtMaBN2.Text = gridView3.GetFocusedRowCellValue("BN_ID").ToString();
                     txtTen2.Text = gridView3.GetFocusedRowCellValue("BN_HOTEN").ToString();
                     txtCDCLS_TENBN.Text = gridView3.GetFocusedRowCellValue("BN_HOTEN").ToString();
-                    txtCMT2.Text = gridView3.GetFocusedRowCellValue("BN_CMT").ToString();
+                    //txtCMT2.Text = gridView3.GetFocusedRowCellValue("BN_CMT").ToString();
                     //txtSDT2.Text = gridView3.GetFocusedRowCellValue("BN_SDT").ToString();
-                    txtDiachi2.Text = gridView3.GetFocusedRowCellValue("BN_DIACHI").ToString();
+                    lbDiachi.Text = gridView3.GetFocusedRowCellValue("BN_DIACHI").ToString();
                     //DateNS2.Text = gridView3.GetFocusedRowCellValue("BN_NGAYSINH").ToString();
                     cbGioitinh2.Text = gridView3.GetFocusedRowCellValue("BN_GIOITINH").ToString();
                     txtCDCLS_GT.Text = gridView3.GetFocusedRowCellValue("BN_GIOITINH").ToString();
@@ -943,9 +985,9 @@ namespace quanlyphongkham.FORM
 
                     txtBenhphu.Text = gridView3.GetFocusedRowCellValue("KB_BENHPHU").ToString();
 
-                    gdToa.DataSource = daoTT.getTTbyBN(int.Parse(gridView3.GetFocusedRowCellValue("BN_ID").ToString()));
+                    gdToa.DataSource = daoTT.getTTbyBN(gridView3.GetFocusedRowCellValue("BN_ID").ToString());
 
-                    gcPCD.DataSource = daoPCD.getPCD_by_KBID(txtIdTT_KB.Text);
+                    gcPCD.DataSource = daoPCD.getPCD_by_KBID(txtIdKB.Text);
 
                     btnSua.Enabled = true;
 
@@ -979,7 +1021,7 @@ namespace quanlyphongkham.FORM
 
             if (daoTT.InsertTT(t))
             {
-                string idtt = daoTT.getTT_ID_MAX_by_KBID(txtIdTT_KB.Text).ToString();
+                string idtt = daoTT.getTT_ID_MAX_by_KBID(txtIdKB.Text).ToString();
                 //gcThuoc.DataSource = daoCTTT.getCT_TOATHUOCbyID(idtt);
                 //MessageBox.Show(idtt);
             }
@@ -991,9 +1033,10 @@ namespace quanlyphongkham.FORM
             string tt = txtTenThuoc.Text;
             string dvt_cd = daoTHUOC.getDVT_CD_GIA(tt);
             string[] dvt_cd_split = dvt_cd.Split('/');
-            txtDVT.Text = dvt_cd_split[0];
-            txtCachDung.Text = dvt_cd_split[1];
-            txtDonGia.Text = dvt_cd_split[2];
+            txtDangThuoc.Text = dvt_cd_split[0];
+            txtDVT.Text = dvt_cd_split[1];
+            txtCachDung.Text = dvt_cd_split[2];
+            txtDonGia.Text = dvt_cd_split[3];
         }
 
         private void txtTenThuoc_KeyDown(object sender, KeyEventArgs e)
@@ -1209,7 +1252,6 @@ namespace quanlyphongkham.FORM
             CT_TOATHUOC ct = LayCTTT();
             if (e.KeyCode == Keys.Enter)
             {
-                
                 int sn = int.Parse(txtSoNgay.Text);
                 int sang = int.Parse(txtSang.Text);
                 int trua = int.Parse(txtTrua.Text);
@@ -1230,7 +1272,6 @@ namespace quanlyphongkham.FORM
 
             if (e.KeyCode == Keys.Tab)
             {
-
                 int sn = int.Parse(txtSoNgay.Text);
                 int sang = int.Parse(txtSang.Text);
                 int trua = int.Parse(txtTrua.Text);
@@ -1257,7 +1298,6 @@ namespace quanlyphongkham.FORM
             
             if (e.KeyCode == Keys.Enter)
             {
-
                 int sn = int.Parse(txtSoNgay.Text);
                 int sang = int.Parse(txtSang.Text);
                 int trua = int.Parse(txtTrua.Text);
@@ -1269,7 +1309,7 @@ namespace quanlyphongkham.FORM
                 txtSL.Text = slg.ToString();
                 txtThanhTien.Text = ttien.ToString();
 
-                string idtt = daoTT.getTT_ID_MAX_by_KBID(txtIdTT_KB.Text).ToString();
+                string idtt = daoTT.getTT_ID_MAX_by_KBID(txtIdKB.Text).ToString();
                 //gcThuoc.DataSource = daoCTTT.getCT_TOATHUOCbyID(idtt);
 
 
@@ -1290,7 +1330,6 @@ namespace quanlyphongkham.FORM
 
             if (e.KeyCode == Keys.Tab)
             {
-
                 int sn = int.Parse(txtSoNgay.Text);
                 int sang = int.Parse(txtSang.Text);
                 int trua = int.Parse(txtTrua.Text);
@@ -1302,7 +1341,7 @@ namespace quanlyphongkham.FORM
                 txtSL.Text = slg.ToString();
                 txtThanhTien.Text = ttien.ToString();
 
-                string idtt = daoTT.getTT_ID_MAX_by_KBID(txtIdTT_KB.Text).ToString();
+                string idtt = daoTT.getTT_ID_MAX_by_KBID(txtIdKB.Text).ToString();
                 //gcThuoc.DataSource = daoCTTT.getCT_TOATHUOCbyID(idtt);
 
                 if (suatt == 1)
@@ -1317,9 +1356,7 @@ namespace quanlyphongkham.FORM
                     daoCTTT.InsertCTTT(ct);
                     gcThuoc.DataSource = daoCTTT.getCT_TOATHUOCbyID(idtt);
                 }
-                
                 //MessageBox.Show("Thêm thành công");
-
             }
         }
 
@@ -1334,10 +1371,10 @@ namespace quanlyphongkham.FORM
             {
                 try
                 {
-                    DialogResult dr = MessageBox.Show("Bạn có muốn xóa thuốc '" + gridView5.GetFocusedRowCellValue("THUOC_TEN").ToString() + "' trong toa ?", "Thông báo", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                    DialogResult dr = MessageBox.Show("Bạn có muốn xóa thuốc '" + gridView5.GetFocusedRowCellValue("VT_TEN").ToString() + "' trong toa ?", "Thông báo", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                     if (dr == DialogResult.Yes)
                     {
-                        daoCTTT.xoaCT_TOATHUOC(gridView5.GetFocusedRowCellValue("THUOC_ID").ToString());
+                        daoCTTT.xoaCT_TOATHUOC(gridView5.GetFocusedRowCellValue("VT_ID").ToString());
                         MessageBox.Show("Xóa thành công", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         gcThuoc.DataSource = daoCTTT.getCT_TOATHUOCbyID(daoTT.getIDTT_MAX().ToString());
                     }
@@ -1371,7 +1408,7 @@ namespace quanlyphongkham.FORM
         {
             rptToaThuoc tt = new rptToaThuoc();
             tt.lbTenBN.Text = txtTen2.Text;
-            tt.lbDiaChi.Text = txtDiachi2.Text;
+            tt.lbDiaChi.Text = lbDiachi.Text;
             tt.lbICD.Text = txtICD.Text;
             tt.lbNgay.Text = DateTime.Now.Day.ToString();
             tt.lbThang.Text = DateTime.Now.Month.ToString();
@@ -1380,6 +1417,32 @@ namespace quanlyphongkham.FORM
             tt.lbGioiTinh.Text = cbGioitinh2.Text;
             tt.lbTenBS.Text = gridView3.GetFocusedRowCellValue("NV_HOTEN").ToString();
             
+
+
+            //barcode
+            string barcode = txtMaBN2.Text;
+            Bitmap bitmap = new Bitmap(barcode.Length * 20, 80);
+            using (Graphics graphics = Graphics.FromImage(bitmap))
+            {
+                Font oFont = new System.Drawing.Font("IDAutomationHC39M", 13);
+                PointF point = new PointF(2f, 2f);
+                SolidBrush black = new SolidBrush(Color.Black);
+                SolidBrush white = new SolidBrush(Color.White);
+                graphics.FillRectangle(white, 0, 0, bitmap.Width, bitmap.Height);
+                graphics.DrawString(barcode, oFont, black, point);
+            }
+
+            using (MemoryStream ms = new MemoryStream())
+            {
+                bitmap.Save(ms, ImageFormat.Png);
+                tt.picbarcode.Image = bitmap;
+                tt.picbarcode.HeightF = bitmap.Height;
+                tt.picbarcode.WidthF = bitmap.Width;
+                //pictureBox1.Image = bitmap;
+                //pictureBox1.Height = bitmap.Height;
+                //pictureBox1.Width = bitmap.Width;
+            }
+
 
             tt.DataSource = gcThuoc.DataSource;
             tt.BindData();
@@ -1458,7 +1521,7 @@ namespace quanlyphongkham.FORM
             PHIEU_CHI_DINH t = LayTTPCD();
             if(daoPCD.InsertPCD(t))
             {
-                gcPCD.DataSource = daoPCD.getPCD_by_KBID(txtIdTT_KB.Text);
+                gcPCD.DataSource = daoPCD.getPCD_by_KBID(txtIdKB.Text);
                 loadDMCLS();
             }
         }
@@ -1485,7 +1548,7 @@ namespace quanlyphongkham.FORM
                     {
                         daoPCD.deletePCD(gridView8.GetFocusedRowCellValue("PCD_ID").ToString());
                         MessageBox.Show("Xóa thành công", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                        gcPCD.DataSource = daoPCD.getPCD_by_KBID(txtIdTT_KB.Text);
+                        gcPCD.DataSource = daoPCD.getPCD_by_KBID(txtIdKB.Text);
                     }
                 }
                 catch
@@ -1553,7 +1616,7 @@ namespace quanlyphongkham.FORM
 
             if (daoTT.InsertTT(t))
             {
-                string idtt = daoTT.getTT_ID_MAX_by_KBID(txtIdTT_KB.Text).ToString();
+                string idtt = daoTT.getTT_ID_MAX_by_KBID(txtIdKB.Text).ToString();
                 //gcThuoc.DataSource = daoCTTT.getCT_TOATHUOCbyID(idtt);
                 MessageBox.Show(idtt);
             }
@@ -1563,7 +1626,7 @@ namespace quanlyphongkham.FORM
 
             for (int i = 0; i < dt.Rows.Count; i++)
             {
-                int idtt = daoTT.getTT_ID_MAX_by_KBID(txtIdTT_KB.Text);
+                int idtt = daoTT.getTT_ID_MAX_by_KBID(txtIdKB.Text);
                 ct.Id_tt = idtt;
                 ct.Id_thuoc = dt.Rows[i]["THUOC_ID"].ToString();
                 ct.Ctt_songayuong = int.Parse(dt.Rows[i]["CTT_SONGAYUONG"].ToString());
@@ -1579,9 +1642,9 @@ namespace quanlyphongkham.FORM
                 //ct.Thuoc_ten = dt.Rows[i]["THUOC_TEN"].ToString();
                 //MessageBox.Show(a);
                 daoCTTT.InsertCTTT(ct);
-                gcThuoc.DataSource = daoCTTT.getCT_TOATHUOCbyID(daoTT.getTT_ID_MAX_by_KBID(txtIdTT_KB.Text).ToString());
+                gcThuoc.DataSource = daoCTTT.getCT_TOATHUOCbyID(daoTT.getTT_ID_MAX_by_KBID(txtIdKB.Text).ToString());
             }
-            gdToa.DataSource = daoTT.getTTbyBN(int.Parse(gridView3.GetFocusedRowCellValue("BN_ID").ToString()));
+            gdToa.DataSource = daoTT.getTTbyBN(gridView3.GetFocusedRowCellValue("BN_ID").ToString());
             frmTT.Close();
         }
 
@@ -1664,7 +1727,7 @@ namespace quanlyphongkham.FORM
             txtCannang_LSK.Text = gridView10.GetFocusedRowCellValue("TN_CANNANG").ToString();
             txtBMI_LSK.Text = gridView10.GetFocusedRowCellValue("TN_BMI").ToString();
             string kb = gridView10.GetFocusedRowCellValue("KB_ID").ToString();
-            txtIdTT_KB.Text = gridView10.GetFocusedRowCellValue("KB_ID").ToString();
+            txtIdKB.Text = gridView10.GetFocusedRowCellValue("KB_ID").ToString();
 
             string icd = daoKB.getBL_ICD(kb);
             string[] icd_split = icd.Split('/');
@@ -1681,12 +1744,12 @@ namespace quanlyphongkham.FORM
 
             //gdToa.DataSource = daoTT.getTTbyBN(int.Parse(gridView3.GetFocusedRowCellValue("BN_ID").ToString()));
 
-            //gcPCD.DataSource = daoPCD.getPCD_by_KBID(txtIdTT_KB.Text);
-            string idtt = daoTT.getTT_ID_MAX_by_KBID(txtIdTT_KB.Text).ToString();
+            //gcPCD.DataSource = daoPCD.getPCD_by_KBID(txtIdKB.Text);
+            string idtt = daoTT.getTT_ID_MAX_by_KBID(txtIdKB.Text).ToString();
 
             gcTT_LSK.DataSource = daoCTTT.getCT_TOATHUOCbyID(idtt);
 
-            gcCLS_LSK.DataSource = daoCTCLS.getCLS_LSK(txtIdTT_KB.Text);
+            gcCLS_LSK.DataSource = daoCTCLS.getCLS_LSK(txtIdKB.Text);
 
             //btnSua.Enabled = true;
 
@@ -1827,7 +1890,7 @@ namespace quanlyphongkham.FORM
         {
             rptPCD_CLS tt = new rptPCD_CLS();
             tt.lbTenBN.Text = txtTen2.Text;
-            tt.lbDiaChi.Text = txtDiachi2.Text;
+            tt.lbDiaChi.Text = lbDiachi.Text;
             tt.lbICD.Text = txtICD.Text;
             tt.lbNgay.Text = DateTime.Now.Day.ToString();
             tt.lbThang.Text = DateTime.Now.Month.ToString();
@@ -1890,6 +1953,64 @@ namespace quanlyphongkham.FORM
         private void cmSDL_LSK_Opening(object sender, CancelEventArgs e)
         {
 
+        }
+
+        private void btnInXemPK_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        void TTPK()
+        {
+            txtTenThuocPK.AutoCompleteMode = AutoCompleteMode.Suggest;
+            txtTenThuocPK.AutoCompleteSource = AutoCompleteSource.CustomSource;
+            txtTenThuocPK.AutoCompleteCustomSource = daoTHUOC.getDSTHUOC_TOAPK();
+
+            txtSoNgayPK.Text = "0";
+            txtSangPK.Text = "0";
+            txtTruaPK.Text = "0";
+            txtChieuPK.Text = "0";
+            txtToiPK.Text = "0";
+        }
+
+        private void btnThemToaPK_Click(object sender, EventArgs e)
+        {
+            TOA_THUOC t = LayTTTTPK();
+            //PK();
+            suattpk = 0;
+            themttpk = false;
+
+            pnNhapThuocPK.Enabled = true;
+            if (daoTT.InsertTT(t))
+            {
+                string idtt = daoTT.getTT_ID_MAX_by_KBID(txtIdKB.Text).ToString();
+                //gcThuoc.DataSource = daoCTTT.getCT_TOATHUOCbyID(idtt);
+                //MessageBox.Show(idtt);
+            }
+        }
+
+        private void txtTenThuocPK_TextChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                //DataTable dt = new DataTable();
+                //dt = daoTHUOC.getDSTHUOCPK(txtTenThuocPK.Text);
+                //for (int i = 0; i < dt.Rows.Count; i++)
+                //{
+                //    ListViewItem item = new ListViewItem(dt.Rows[i]["VT_TEN"].ToString());
+                //    item.SubItems.Add(dt.Rows[i]["CTPN_SOLUONG"].ToString());
+                //    item.SubItems.Add(dt.Rows[i]["CTPN_SOLO"].ToString());
+                //    listView1.Items.Add(item);
+                //}
+                //listView1.Visible = true;
+
+                gcDMTHUOCPK.DataSource = daoTHUOC.getDSTHUOCPK(txtTenThuocPK.Text);
+                gcDMTHUOCPK.Visible = true;
+            }
+            catch
+            {
+
+            }
         }
     }
 }

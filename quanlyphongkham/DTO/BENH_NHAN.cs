@@ -8,8 +8,8 @@ namespace quanlyphongkham.DTO
 {
     class BENH_NHAN
     {
-        int id_bn;
-        public int Id_bn
+        string id_bn;
+        public string Id_bn
         {
             get { return id_bn; }
             set { id_bn = value; }
@@ -71,7 +71,7 @@ namespace quanlyphongkham.DTO
             set { trangthai = value; }
         }
 
-        public BENH_NHAN(int id, string hoten, string cmt, string sdt, string diachi, string ngaysinh, int gioitinh, string nhommau, int trangthai)
+        public BENH_NHAN(string id, string hoten, string cmt, string sdt, string diachi, string ngaysinh, int gioitinh, string nhommau, int trangthai)
         {
             this.Id_bn = id;
             this.Hoten = hoten;

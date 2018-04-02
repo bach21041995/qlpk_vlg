@@ -52,6 +52,7 @@
             this.BottomMargin = new DevExpress.XtraReports.UI.BottomMarginBand();
             this.behaviorManager1 = new DevExpress.Utils.Behaviors.BehaviorManager(this.components);
             this.ReportHeader = new DevExpress.XtraReports.UI.ReportHeaderBand();
+            this.picbarcode = new DevExpress.XtraReports.UI.XRPictureBox();
             this.lbGioiTinh = new DevExpress.XtraReports.UI.XRLabel();
             this.xrLabel5 = new DevExpress.XtraReports.UI.XRLabel();
             this.lbTuoi = new DevExpress.XtraReports.UI.XRLabel();
@@ -298,6 +299,7 @@
             // ReportHeader
             // 
             this.ReportHeader.Controls.AddRange(new DevExpress.XtraReports.UI.XRControl[] {
+            this.picbarcode,
             this.lbGioiTinh,
             this.xrLabel5,
             this.lbTuoi,
@@ -314,6 +316,12 @@
             this.xrLabel12});
             this.ReportHeader.HeightF = 308.3334F;
             this.ReportHeader.Name = "ReportHeader";
+            // 
+            // picbarcode
+            // 
+            this.picbarcode.LocationFloat = new DevExpress.Utils.PointFloat(540.1096F, 16.2708F);
+            this.picbarcode.Name = "picbarcode";
+            this.picbarcode.SizeF = new System.Drawing.SizeF(174.4227F, 22.99999F);
             // 
             // lbGioiTinh
             // 
@@ -513,10 +521,10 @@
             // xrLabel8
             // 
             this.xrLabel8.Font = new System.Drawing.Font("Times New Roman", 18F, System.Drawing.FontStyle.Bold);
-            this.xrLabel8.LocationFloat = new DevExpress.Utils.PointFloat(198.5135F, 73.22922F);
+            this.xrLabel8.LocationFloat = new DevExpress.Utils.PointFloat(254.4832F, 73.22922F);
             this.xrLabel8.Name = "xrLabel8";
             this.xrLabel8.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
-            this.xrLabel8.SizeF = new System.Drawing.SizeF(331.5962F, 34.45832F);
+            this.xrLabel8.SizeF = new System.Drawing.SizeF(245.375F, 34.45832F);
             this.xrLabel8.StylePriority.UseFont = false;
             this.xrLabel8.StylePriority.UseTextAlignment = false;
             this.xrLabel8.Text = "TOA THUỐC";
@@ -794,5 +802,6 @@
         private DevExpress.XtraReports.UI.XRTableCell xrTableCell8;
         public DevExpress.XtraReports.UI.XRLabel lbNgayHen;
         private DevExpress.XtraReports.UI.XRLabel xrLabel9;
+        public DevExpress.XtraReports.UI.XRPictureBox picbarcode;
     }
 }

@@ -10,7 +10,7 @@ namespace quanlyphongkham.DAO
 {
     class ConnectionDatabase
     {
-        public string connectionStr = @"Data Source=KHANH\SQLEXPRESS;Initial Catalog=QLPK;Integrated Security=True";
+        public string connectionStr = @"Data Source=JAEJIN-PC\SQLEXPRESS;Initial Catalog=quanlyphongkham;Integrated Security=True";
 
 
         public DataTable ExecuteQuery(string query, object[] parameter = null)

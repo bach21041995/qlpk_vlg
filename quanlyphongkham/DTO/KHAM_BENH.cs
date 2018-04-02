@@ -57,7 +57,14 @@ namespace quanlyphongkham.DTO
             set { kb_benhphu = value; }
         }
 
-        public KHAM_BENH(string idkb, string idtn, string ngayhtk, string ngay, int trangthai, string ketluan, string benhphu)
+        string kb_trieuchung;
+        public string Kb_trieuchung
+        {
+            get { return kb_trieuchung; }
+            set { kb_trieuchung = value; }
+        }
+
+        public KHAM_BENH(string idkb, string idtn, string ngayhtk, string ngay, int trangthai, string ketluan, string benhphu, string trieuchung)
         {
             this.Id_kb = idkb;
             this.Id_tn = idtn;
@@ -66,6 +73,7 @@ namespace quanlyphongkham.DTO
             this.Kb_trangthai = trangthai;
             this.Kb_ketluan = ketluan;
             this.Kb_benhphu = benhphu;
+            this.kb_trieuchung = trieuchung;
         }
     }
 }

@@ -23,6 +23,7 @@ namespace quanlyphongkham.FORM
         DAO_PHIEU_TIEP_NHAN daoPTN = new DAO_PHIEU_TIEP_NHAN();
         DAO_BENH_NHAN daoBN = new DAO_BENH_NHAN();
         DAO_NHAN_VIEN daoNV = new DAO_NHAN_VIEN();
+        DAO_DM_DICHVUKHAM daoDVK = new DAO_DM_DICHVUKHAM();
         //DAO_NGAY daoNgay = new DAO_NGAY();
         ConnectionDatabase connecDB = new ConnectionDatabase();
         bool dieukien = true;
@@ -35,7 +36,7 @@ namespace quanlyphongkham.FORM
             string ngay = ht.ToShortDateString();
             ngay = ngay.Replace("/", "");
 
-            gdPTNH.DataSource = daoPTN.getPTN_NGAY(ngay);
+            gdPTNH.DataSource = daoPTN.getPTN(ngay);
 
             //gdPTN.DataSource = daoPTN.getDSPTN();
         }
@@ -46,7 +47,7 @@ namespace quanlyphongkham.FORM
             string ngay = dt.ToShortDateString();
             ngay = ngay.Replace("/", "");
 
-            gdPTNH.DataSource = daoPTN.getPTN_NGAY(ngay);
+            gdPTNH.DataSource = daoPTN.getPTN(ngay);
         }
         void loadPTNH()
         {
@@ -89,6 +90,10 @@ namespace quanlyphongkham.FORM
             cbBSK2.DataSource = daoNV.getDSBS();
             cbBSK2.DisplayMember = "NV_HOTEN";
             cbBSK2.ValueMember = "NV_ID";
+
+            cbDVK.DataSource = daoDVK.getDSDVK();
+            cbDVK.DisplayMember = "DVK_TEN";
+            cbDVK.ValueMember = "DVK_ID";
 
             var items = new BindingList<KeyValuePair<string, string>>();
 
@@ -164,6 +169,7 @@ namespace quanlyphongkham.FORM
             DateNS2.Enabled = b;
             //DateNgayGio.Enabled = b;
             cbBSK2.Enabled = b;
+            cbDVK.Enabled = b;
             cbGioitinh2.Enabled = b;
             cbNhommau.Enabled = b;
             txtMach.Enabled = b;
@@ -224,7 +230,7 @@ namespace quanlyphongkham.FORM
 
         private BENH_NHAN LayTTBN_DAT()
         {
-            int id = int.Parse(txtMaBN2.Text);
+            string id = txtMaBN2.Text;
             string ht = txtTen2.Text;
             string cmt = txtCMT2.Text;
             string sdt = txtSDT2.Text;
@@ -241,7 +247,7 @@ namespace quanlyphongkham.FORM
 
         private BENH_NHAN LayTTBN()
         {
-            int id = int.Parse(txtMaBN2.Text);
+            string id = txtMaBN2.Text;
             string ht = txtTen2.Text;
             string cmt = txtCMT2.Text;
             string sdt = txtSDT2.Text;
@@ -260,11 +266,13 @@ namespace quanlyphongkham.FORM
         {
             string ma = txtMa2.Text;
             int idnv = frmDANG_NHAP.idnv;
-            int idbn = int.Parse(txtMaBN2.Text);
+            string idbn = txtMaBN2.Text;
+            string idba = "1";
             string idbs = cbBSK2.SelectedValue.ToString();
             int idbs2 = int.Parse(idbs);
             int stt = int.Parse(txtSTT2.Text);
-            string dvk = "";
+            string dvk = cbDVK.SelectedValue.ToString();
+            int iddvk = int.Parse(dvk);
             int tuoithang = int.Parse(txtTuoithang2.Text);
             int tuoinam = int.Parse(txtTuoinam2.Text);
             DateTime dt = Convert.ToDateTime(DateNgayhen.Text);
@@ -279,7 +287,7 @@ namespace quanlyphongkham.FORM
             float bmi = 0;
             int tt = 0;
 
-            PHIEU_TIEP_NHAN t = new PHIEU_TIEP_NHAN(ma, idnv, idbn, stt, idbs2, dvk, tuoithang, tuoinam, ngaygio, mach, nhietdo, nhiptho, huyetap, chieucao, cannang, bmi, tt);
+            PHIEU_TIEP_NHAN t = new PHIEU_TIEP_NHAN(ma, idnv, idbn, idba, iddvk, stt, idbs2, dvk, tuoithang, tuoinam, ngaygio, mach, nhietdo, nhiptho, huyetap, chieucao, cannang, bmi, tt);
 
             return t;
         }
@@ -288,11 +296,13 @@ namespace quanlyphongkham.FORM
         {
             string ma = txtMa2.Text;
             int idnv = 1;
-            int idbn = int.Parse(txtMaBN2.Text);
+            string idbn = txtMaBN2.Text;
+            string idba = "1";
             string idbs = cbBSK2.SelectedValue.ToString();
             int idbs2 = int.Parse(idbs);
             int stt = int.Parse(txtSTT2.Text);
-            string dvk = "";
+            string dvk = cbDVK.SelectedValue.ToString();
+            int iddvk = int.Parse(dvk);
             int tuoithang = int.Parse(txtTuoithang2.Text);
             int tuoinam = int.Parse(txtTuoinam2.Text);
             string ngaygio = System.DateTime.Now.ToShortDateString();
@@ -348,7 +358,7 @@ namespace quanlyphongkham.FORM
             float bmi = float.Parse(txtBMI.Text);
             int tt = 0;
 
-            PHIEU_TIEP_NHAN t = new PHIEU_TIEP_NHAN(ma, idnv, idbn, stt, idbs2, dvk, tuoithang, tuoinam, ngaygio, mach, nhietdo, nhiptho, huyetap, chieucao, cannang, bmi, tt);
+            PHIEU_TIEP_NHAN t = new PHIEU_TIEP_NHAN(ma, idnv, idbn, idba, iddvk, stt, idbs2, dvk, tuoithang, tuoinam, ngaygio, mach, nhietdo, nhiptho, huyetap, chieucao, cannang, bmi, tt);
 
             return t;
         }
@@ -430,10 +440,12 @@ namespace quanlyphongkham.FORM
 
         void loadMaBN()
         {
-            string mabn2 = daoBN.getIDBN_max();
-            int mabn2_int = int.Parse(mabn2) + 1;
-            string mabn2_next = mabn2_int.ToString();
-            txtMaBN2.Text = mabn2_next;
+            string malt = "B";
+            string mabn = daoBN.insertMaBN(malt);
+            //string mabn2 = daoBN.getIDBN_max();
+            //int mabn2_int = int.Parse(mabn2) + 1;
+            //string mabn2_next = mabn2_int.ToString();
+            txtMaBN2.Text = mabn;
         }
         
         

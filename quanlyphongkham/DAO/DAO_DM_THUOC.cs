@@ -277,6 +277,35 @@ namespace quanlyphongkham.DAO
             return true;
         }
 
+        public AutoCompleteStringCollection getDSTHUOC_TOAPK()
+        {
+            SqlConnection conn = new SqlConnection(connecDB.connectionStr);
+            SqlCommand cmd = new SqlCommand("getTHUOCPK", conn);
+            AutoCompleteStringCollection auto2 = new AutoCompleteStringCollection();
+            cmd.CommandType = CommandType.StoredProcedure;
+
+            conn.Open();
+            SqlDataReader reader;
+            reader = cmd.ExecuteReader();
+            if (reader != null)
+            {
+                while (reader.Read())
+                {
+                    auto2.Add(reader["VT_TEN"].ToString());
+                    auto2.Add(reader["CTPN_SOLO"].ToString());
+                    auto2.Add(reader["CTPN_SOLUONG"].ToString());
+                }
+            }
+            //cmd.ExecuteNonQuery();
+            //SqlDataAdapter adapter = new SqlDataAdapter(cmd);
+            //adapter.Fill(dt);
+            conn.Close();
+            return auto2;
+
+            //string query = " select LT_ID, LT_TEN from LOAI_THUOC where LT_TRANGTHAI = '1'";
+            //return connecDB.ExecuteQuery(query);
+        }
+
 
         public AutoCompleteStringCollection getDSTHUOC_TOA()
         {
@@ -292,7 +321,7 @@ namespace quanlyphongkham.DAO
             {
                 while (reader.Read())
                 {
-                    auto2.Add(reader["THUOC_TEN"].ToString());
+                    auto2.Add(reader["VT_TEN"].ToString());
                 }
             }
             //cmd.ExecuteNonQuery();
@@ -305,6 +334,22 @@ namespace quanlyphongkham.DAO
             //return connecDB.ExecuteQuery(query);
         }
 
+        public DataTable getDSTHUOCPK(string ten)
+        {
+            SqlConnection conn = new SqlConnection(connecDB.connectionStr);
+            SqlCommand cmd = new SqlCommand("getTHUOCPK", conn);
+            DataTable dt = new DataTable();
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.Parameters.Add("@TENTHUOC", SqlDbType.NVarChar, 100);
+            cmd.Parameters["@TENTHUOC"].Value = ten;
+            conn.Open();
+            cmd.ExecuteNonQuery();
+            SqlDataAdapter adapter = new SqlDataAdapter(cmd);
+            adapter.Fill(dt);
+            conn.Close();
+            return dt;
+        }
+
         public string getDVT_CD_GIA(string tk)
         {
             SqlConnection conn = new SqlConnection(connecDB.connectionStr);
@@ -312,22 +357,26 @@ namespace quanlyphongkham.DAO
 
             cmd.CommandType = CommandType.StoredProcedure;
             cmd.Parameters.Add("@tt", SqlDbType.NVarChar, 60);
+            cmd.Parameters.Add("@dang", SqlDbType.NVarChar, 100);
             cmd.Parameters.Add("@dvt", SqlDbType.NVarChar, 10);
             cmd.Parameters.Add("@cd", SqlDbType.NVarChar, 60);
             cmd.Parameters.Add("@dg", SqlDbType.Float);
+            cmd.Parameters["@dang"].Direction = ParameterDirection.Output;
             cmd.Parameters["@dvt"].Direction = ParameterDirection.Output;
             cmd.Parameters["@cd"].Direction = ParameterDirection.Output;
             cmd.Parameters["@dg"].Direction = ParameterDirection.Output;
             cmd.Parameters["@tt"].Value = tk;
+            cmd.Parameters["@dang"].Value = "";
             cmd.Parameters["@dvt"].Value = "";
             cmd.Parameters["@cd"].Value = "";
             cmd.Parameters["@dg"].Value = 0;
             conn.Open();
             cmd.ExecuteNonQuery();
+            string dang = cmd.Parameters["@dang"].Value.ToString();
             string dvt = cmd.Parameters["@dvt"].Value.ToString();
             string cd = cmd.Parameters["@cd"].Value.ToString();
             string dg = cmd.Parameters["@dg"].Value.ToString();
-            string dvt_cd_dg = dvt + "/" + cd + "/" + dg;
+            string dvt_cd_dg = dang + "/" + dvt + "/" + cd + "/" + dg;
             conn.Close();
             return dvt_cd_dg;
         }

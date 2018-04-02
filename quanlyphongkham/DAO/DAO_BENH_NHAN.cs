@@ -33,13 +33,13 @@ namespace quanlyphongkham.DAO
 
         public DataTable getTTBN(string tk)
         {
-            int id = int.Parse(tk);
+            //int id = int.Parse(tk);
             SqlConnection conn = new SqlConnection(connecDB.connectionStr);
             SqlCommand cmd = new SqlCommand("getTTBN", conn);
             DataTable dt = new DataTable();
             cmd.CommandType = CommandType.StoredProcedure;
-            cmd.Parameters.Add("@id", SqlDbType.Int);
-            cmd.Parameters["@id"].Value = id;
+            cmd.Parameters.Add("@id", SqlDbType.NVarChar, 10);
+            cmd.Parameters["@id"].Value = tk;
             conn.Open();
             cmd.ExecuteNonQuery();
             SqlDataAdapter adapter = new SqlDataAdapter(cmd);
@@ -49,6 +49,25 @@ namespace quanlyphongkham.DAO
             //string query = " select THUOC_ID, THUOC_TEN, THUOC_HDSD, THUOC_CONGDUNG, THUOC_DVT, THUOC_GIA, LT_TEN"
             //+ " from DM_THUOC a, LOAI_THUOC b where a.LT_ID = b.LT_ID order by THUOC_ID";
             //return connecDB.ExecuteQuery(query);
+        }
+
+        public string insertMaBN(string malt)
+        {
+            SqlConnection conn = new SqlConnection(connecDB.connectionStr);
+            SqlCommand cmd = new SqlCommand("BN_ID_auto", conn);
+
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.Parameters.Add("@malt", SqlDbType.NVarChar, 10);
+            cmd.Parameters.Add("@ma_next", SqlDbType.NVarChar, 15);
+            cmd.Parameters["@ma_next"].Direction = ParameterDirection.Output;
+            cmd.Parameters["@malt"].Value = malt;
+            cmd.Parameters["@ma_next"].Value = "";
+            conn.Open();
+            cmd.ExecuteNonQuery();
+            string ma = cmd.Parameters["@ma_next"].Value.ToString();
+            conn.Close();
+
+            return ma;
         }
 
         public bool InsertBN(BENH_NHAN t)
@@ -62,6 +81,7 @@ namespace quanlyphongkham.DAO
                     cmd.CommandType = CommandType.StoredProcedure;
                     //cmd.Parameters.Add("@mathuoc", SqlDbType.NVarChar, 20);
                     //cmd.Parameters["@mathuoc"].Value = mt;
+                    cmd.Parameters.Add("@BN_ID", SqlDbType.NVarChar, 10);
                     cmd.Parameters.Add("@BN_HOTEN", SqlDbType.NVarChar, 30);
                     cmd.Parameters.Add("@BN_CMT", SqlDbType.NVarChar, 12);
                     cmd.Parameters.Add("@BN_SDT", SqlDbType.NVarChar, 11);
@@ -71,6 +91,7 @@ namespace quanlyphongkham.DAO
                     cmd.Parameters.Add("@BN_NHOMMAU", SqlDbType.NVarChar, 2);
                     cmd.Parameters.Add("@BN_TRANGTHAI", SqlDbType.Int);
 
+                    cmd.Parameters["@BN_ID"].Value = t.Id_bn;
                     cmd.Parameters["@BN_HOTEN"].Value = t.Hoten;
                     cmd.Parameters["@BN_CMT"].Value = t.Cmt;
                     cmd.Parameters["@BN_SDT"].Value = t.Sdt;
@@ -133,7 +154,7 @@ namespace quanlyphongkham.DAO
                     cmd.CommandType = CommandType.StoredProcedure;
                     //cmd.Parameters.Add("@mathuoc", SqlDbType.NVarChar, 20);
                     //cmd.Parameters["@mathuoc"].Value = mt;
-                    cmd.Parameters.Add("@BN_ID", SqlDbType.Int);
+                    cmd.Parameters.Add("@BN_ID", SqlDbType.NVarChar, 10);
                     cmd.Parameters.Add("@BN_HOTEN", SqlDbType.NVarChar, 30);
                     cmd.Parameters.Add("@BN_CMT", SqlDbType.NVarChar, 12);
                     cmd.Parameters.Add("@BN_SDT", SqlDbType.NVarChar, 11);

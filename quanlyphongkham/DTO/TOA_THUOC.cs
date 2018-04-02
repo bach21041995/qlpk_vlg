@@ -22,13 +22,6 @@ namespace quanlyphongkham.DTO
             set { id_kb = value; }
         }
 
-        string tt_ten;
-        public string Tt_ten
-        {
-            get { return tt_ten; }
-            set { tt_ten = value; }
-        }
-
         string tt_loidan;
         public string Tt_loidan
         {
@@ -51,11 +44,11 @@ namespace quanlyphongkham.DTO
             set { ngay = value; }
         }
 
-        public TOA_THUOC(string idkb, string ten, string loidan, int trangthai, string ngay)
+        public TOA_THUOC(string idkb, string loidan, int trangthai, string ngay)
         {
             //this.Id_tt = idtt;
             this.Id_kb = idkb;
-            this.Tt_ten = ten;
+            //this.Tt_ten = ten;
             this.Tt_loidan = loidan;
             this.Tt_trangthai = trangthai;
             this.Tt_ngay = ngay;

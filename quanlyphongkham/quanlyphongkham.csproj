@@ -87,6 +87,7 @@
     <Compile Include="DAO\DAO_CT_TOATHUOC.cs" />
     <Compile Include="DAO\DAO_DANG_NHAP.cs" />
     <Compile Include="DAO\DAO_DM_CANLAMSAN.cs" />
+    <Compile Include="DAO\DAO_DM_DICHVUKHAM.cs" />
     <Compile Include="DAO\DAO_DM_KHO.cs" />
     <Compile Include="DAO\DAO_DM_THUOC.cs" />
     <Compile Include="DAO\DAO_KHAM_BENH.cs" />
@@ -230,6 +231,12 @@
     <Compile Include="FORM\frmPHIEU_TIEP_NHAN.Designer.cs">
       <DependentUpon>frmPHIEU_TIEP_NHAN.cs</DependentUpon>
     </Compile>
+    <Compile Include="FORM\testbarcode.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FORM\testbarcode.Designer.cs">
+      <DependentUpon>testbarcode.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Report\rptPCD_CLS.cs">
@@ -294,6 +301,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FORM\frmPHIEU_TIEP_NHAN.resx">
       <DependentUpon>frmPHIEU_TIEP_NHAN.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FORM\testbarcode.resx">
+      <DependentUpon>testbarcode.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\licenses.licx" />
     <EmbeddedResource Include="Properties\Resources.resx">

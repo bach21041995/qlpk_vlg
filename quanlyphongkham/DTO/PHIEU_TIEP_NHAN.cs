@@ -22,11 +22,25 @@ namespace quanlyphongkham.DTO
             set { id_nv = value; }
         }
 
-        int id_bn;
-        public int Id_bn
+        string id_bn;
+        public string Id_bn
         {
             get { return id_bn; }
             set { id_bn = value; }
+        }
+
+        string id_ba;
+        public string Id_ba
+        {
+            get { return id_ba; }
+            set { id_ba = value; }
+        }
+
+        int id_dvk;
+        public int Id_dvk
+        {
+            get { return id_dvk; }
+            set { id_dvk = value; }
         }
 
         int tn_stt;
@@ -127,11 +141,13 @@ namespace quanlyphongkham.DTO
             set { tn_trangthai = value; }
         }
 
-        public PHIEU_TIEP_NHAN(string idtn, int idnv, int idbn, int stt, int bsk, string dvk, int tthang, int tnam, string ngaygio, float mach, float nhietdo, float nhiptho, string huyetap, float chieucao, float cannang, float bmi, int trangthai)
+        public PHIEU_TIEP_NHAN(string idtn, int idnv, string idbn, string idba, int iddvk, int stt, int bsk, string dvk, int tthang, int tnam, string ngaygio, float mach, float nhietdo, float nhiptho, string huyetap, float chieucao, float cannang, float bmi, int trangthai)
         {
             this.Id_tn = idtn;
             this.Id_nv = idnv;
             this.Id_bn = idbn;
+            this.Id_ba = idba;
+            this.Id_dvk = iddvk;
             this.Tn_stt = stt;
             this.Tn_bsk = bsk;
             this.Tn_dvk = dvk;

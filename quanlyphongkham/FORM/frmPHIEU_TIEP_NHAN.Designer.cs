@@ -30,6 +30,7 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmPHIEU_TIEP_NHAN));
             DevExpress.XtraGrid.GridLevelNode gridLevelNode1 = new DevExpress.XtraGrid.GridLevelNode();
+            DevExpress.XtraPrinting.BarCode.Code128Generator code128Generator1 = new DevExpress.XtraPrinting.BarCode.Code128Generator();
             this.groupControl1 = new DevExpress.XtraEditors.GroupControl();
             this.txtTim = new DevExpress.XtraEditors.TextEdit();
             this.label13 = new System.Windows.Forms.Label();
@@ -39,6 +40,8 @@
             this.groupControl2 = new DevExpress.XtraEditors.GroupControl();
             this.panelControl2 = new DevExpress.XtraEditors.PanelControl();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.cbDVK = new System.Windows.Forms.ComboBox();
+            this.label2 = new System.Windows.Forms.Label();
             this.cbNhommau = new System.Windows.Forms.ComboBox();
             this.panel3 = new System.Windows.Forms.Panel();
             this.btnLap = new DevExpress.XtraEditors.SimpleButton();
@@ -137,6 +140,7 @@
             this.gridColumn31 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn3 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn4 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.barCodeControl1 = new DevExpress.XtraEditors.BarCodeControl();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl1)).BeginInit();
             this.groupControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.txtTim.Properties)).BeginInit();
@@ -260,6 +264,9 @@
             // 
             // panel2
             // 
+            this.panel2.Controls.Add(this.barCodeControl1);
+            this.panel2.Controls.Add(this.cbDVK);
+            this.panel2.Controls.Add(this.label2);
             this.panel2.Controls.Add(this.cbNhommau);
             this.panel2.Controls.Add(this.panel3);
             this.panel2.Controls.Add(this.label50);
@@ -295,6 +302,25 @@
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(614, 507);
             this.panel2.TabIndex = 66;
+            // 
+            // cbDVK
+            // 
+            this.cbDVK.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cbDVK.FormattingEnabled = true;
+            this.cbDVK.Location = new System.Drawing.Point(395, 393);
+            this.cbDVK.Name = "cbDVK";
+            this.cbDVK.Size = new System.Drawing.Size(208, 26);
+            this.cbDVK.TabIndex = 69;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Location = new System.Drawing.Point(296, 398);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(93, 15);
+            this.label2.TabIndex = 68;
+            this.label2.Text = "Dịch vụ khám";
             // 
             // cbNhommau
             // 
@@ -456,7 +482,7 @@
             // 
             this.label49.AutoSize = true;
             this.label49.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label49.Location = new System.Drawing.Point(25, 219);
+            this.label49.Location = new System.Drawing.Point(23, 221);
             this.label49.Name = "label49";
             this.label49.Size = new System.Drawing.Size(32, 15);
             this.label49.TabIndex = 67;
@@ -637,7 +663,7 @@
             // 
             this.label32.AutoSize = true;
             this.label32.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label32.Location = new System.Drawing.Point(25, 65);
+            this.label32.Location = new System.Drawing.Point(23, 65);
             this.label32.Name = "label32";
             this.label32.Size = new System.Drawing.Size(61, 15);
             this.label32.TabIndex = 42;
@@ -1321,6 +1347,15 @@
             this.gridColumn4.FieldName = "NV_ID";
             this.gridColumn4.Name = "gridColumn4";
             // 
+            // barCodeControl1
+            // 
+            this.barCodeControl1.Location = new System.Drawing.Point(299, 284);
+            this.barCodeControl1.Name = "barCodeControl1";
+            this.barCodeControl1.Padding = new System.Windows.Forms.Padding(10, 2, 10, 0);
+            this.barCodeControl1.Size = new System.Drawing.Size(100, 23);
+            this.barCodeControl1.Symbology = code128Generator1;
+            this.barCodeControl1.TabIndex = 70;
+            // 
             // frmPHIEU_TIEP_NHAN
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1486,5 +1521,8 @@
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn2;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn3;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn4;
+        private System.Windows.Forms.ComboBox cbDVK;
+        private System.Windows.Forms.Label label2;
+        private DevExpress.XtraEditors.BarCodeControl barCodeControl1;
     }
 }

@@ -24,12 +24,10 @@ namespace quanlyphongkham.DAO
                 //cmd.Parameters.Add("@mathuoc", SqlDbType.NVarChar, 20);
                 //cmd.Parameters["@mathuoc"].Value = mt;
                 cmd.Parameters.Add("@KB_ID", SqlDbType.NVarChar, 20);
-                cmd.Parameters.Add("@TT_TEN", SqlDbType.NVarChar, 30);
                 cmd.Parameters.Add("@TT_LOIDAN", SqlDbType.NVarChar, 50);
                 cmd.Parameters.Add("@TT_TRANGTHAI", SqlDbType.Int);
                 cmd.Parameters.Add("@TT_NGAY", SqlDbType.DateTime);
                 cmd.Parameters["@KB_ID"].Value = t.Id_kb;
-                cmd.Parameters["@TT_TEN"].Value = t.Tt_ten;
                 cmd.Parameters["@TT_LOIDAN"].Value = t.Tt_loidan;
                 cmd.Parameters["@TT_TRANGTHAI"].Value = t.Tt_trangthai;
                 cmd.Parameters["@TT_NGAY"].Value = t.Tt_ngay;
@@ -80,7 +78,7 @@ namespace quanlyphongkham.DAO
 
                 cmd.CommandType = CommandType.StoredProcedure;
                 cmd.Parameters.Add("@TTID", SqlDbType.Int);
-                cmd.Parameters.Add("@KBID", SqlDbType.NVarChar, 10);
+                cmd.Parameters.Add("@KBID", SqlDbType.NVarChar, 15);
                 cmd.Parameters["@TTID"].Direction = ParameterDirection.Output;
                 cmd.Parameters["@TTID"].Value = "";
                 cmd.Parameters["@KBID"].Value = kbid;
@@ -97,14 +95,14 @@ namespace quanlyphongkham.DAO
             }
         }
 
-        public DataTable getTTbyBN(int idbn)
+        public DataTable getTTbyBN(string idbn)
         {
            
                 SqlConnection conn = new SqlConnection(connecDB.connectionStr);
                 SqlCommand cmd = new SqlCommand("getTTbyBN", conn);
                 DataTable dt = new DataTable();
                 cmd.CommandType = CommandType.StoredProcedure;
-                cmd.Parameters.Add("@BN_ID", SqlDbType.Int).Value = idbn;
+                cmd.Parameters.Add("@BN_ID", SqlDbType.NVarChar, 15).Value = idbn;
                 conn.Open();
                 cmd.ExecuteNonQuery();
                 SqlDataAdapter adapter = new SqlDataAdapter(cmd);

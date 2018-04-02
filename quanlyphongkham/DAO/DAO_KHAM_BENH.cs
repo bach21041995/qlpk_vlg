@@ -20,7 +20,7 @@ namespace quanlyphongkham.DAO
             SqlCommand cmd = new SqlCommand("KB_ID_auto", conn);
 
             cmd.CommandType = CommandType.StoredProcedure;
-            cmd.Parameters.Add("@mabn", SqlDbType.NVarChar, 8);
+            cmd.Parameters.Add("@mabn", SqlDbType.NVarChar, 11);
             cmd.Parameters.Add("@ma_next", SqlDbType.NVarChar, 15);
             cmd.Parameters["@ma_next"].Direction = ParameterDirection.Output;
             cmd.Parameters["@mabn"].Value = mabn;
@@ -49,6 +49,7 @@ namespace quanlyphongkham.DAO
                 cmd.Parameters.Add("@KB_TRANGTHAI", SqlDbType.Int);
                 cmd.Parameters.Add("@KB_KETLUAN", SqlDbType.NVarChar, 100);
                 cmd.Parameters.Add("@KB_BENHPHU", SqlDbType.NVarChar, 300);
+                cmd.Parameters.Add("@KB_TRIEUCHUNG", SqlDbType.NVarChar, 300);
 
                 cmd.Parameters["@KB_ID"].Value = t.Id_kb;
                 cmd.Parameters["@TN_ID"].Value = t.Id_tn;
@@ -57,14 +58,16 @@ namespace quanlyphongkham.DAO
                 cmd.Parameters["@KB_TRANGTHAI"].Value = t.Kb_trangthai;
                 cmd.Parameters["@KB_KETLUAN"].Value = t.Kb_ketluan;
                 cmd.Parameters["@KB_BENHPHU"].Value = t.Kb_benhphu;
+                cmd.Parameters["@KB_TRIEUCHUNG"].Value = t.Kb_trieuchung;
 
                 conn.Open();
                 int result = cmd.ExecuteNonQuery();
                 conn.Close();
                 return result > 0;
             }
-            catch
+            catch(SqlException ex)
             {
+                MessageBox.Show(ex.ToString());
                 return false;
             }
             
@@ -84,12 +87,14 @@ namespace quanlyphongkham.DAO
                 cmd.Parameters.Add("@KB_TRANGTHAI", SqlDbType.Int);
                 cmd.Parameters.Add("@KB_KETLUAN", SqlDbType.NVarChar, 100);
                 cmd.Parameters.Add("@KB_BENHPHU", SqlDbType.NVarChar, 300);
+                cmd.Parameters.Add("@KB_TRIEUCHUNG", SqlDbType.NVarChar, 300);
 
                 cmd.Parameters["@KB_ID"].Value = t.Id_kb;
                 cmd.Parameters["@KB_NGAYHENTAIKHAM"].Value = t.Ngay_htk;
                 cmd.Parameters["@KB_TRANGTHAI"].Value = t.Kb_trangthai;
                 cmd.Parameters["@KB_KETLUAN"].Value = t.Kb_ketluan;
                 cmd.Parameters["@KB_BENHPHU"].Value = t.Kb_benhphu;
+                cmd.Parameters["@KB_TRIEUCHUNG"].Value = t.Kb_trieuchung;
 
                 conn.Open();
                 int result = cmd.ExecuteNonQuery();
@@ -118,7 +123,7 @@ namespace quanlyphongkham.DAO
             return dt;
         }
 
-        public DataTable getKB_NGAY(string tk)
+        public DataTable getKB_NGAY(string tk, string bs)
         {
             SqlConnection conn = new SqlConnection(connecDB.connectionStr);
             SqlCommand cmd = new SqlCommand("getKB_NGAY", conn);
@@ -126,6 +131,8 @@ namespace quanlyphongkham.DAO
             cmd.CommandType = CommandType.StoredProcedure;
             cmd.Parameters.Add("@ngay", SqlDbType.NVarChar, 30);
             cmd.Parameters["@ngay"].Value = tk;
+            cmd.Parameters.Add("@bs", SqlDbType.NVarChar, 10);
+            cmd.Parameters["@bs"].Value = bs;
             conn.Open();
             cmd.ExecuteNonQuery();
             SqlDataAdapter adapter = new SqlDataAdapter(cmd);
@@ -141,7 +148,7 @@ namespace quanlyphongkham.DAO
         }
 
 
-        public DataTable getKB_NGAY_DK(string tk)
+        public DataTable getKB_NGAY_DK(string tk, string bs)
         {
             SqlConnection conn = new SqlConnection(connecDB.connectionStr);
             SqlCommand cmd = new SqlCommand("getKB_NGAY_DK", conn);
@@ -149,6 +156,8 @@ namespace quanlyphongkham.DAO
             cmd.CommandType = CommandType.StoredProcedure;
             cmd.Parameters.Add("@ngay", SqlDbType.NVarChar, 30);
             cmd.Parameters["@ngay"].Value = tk;
+            cmd.Parameters.Add("@bs", SqlDbType.NVarChar, 10);
+            cmd.Parameters["@bs"].Value = bs;
             conn.Open();
             cmd.ExecuteNonQuery();
             SqlDataAdapter adapter = new SqlDataAdapter(cmd);
@@ -163,7 +172,7 @@ namespace quanlyphongkham.DAO
             //return connecDB.ExecuteQuery(query);
         }
 
-        public DataTable getKB_NGAY_KX(string tk)
+        public DataTable getKB_NGAY_KX(string tk, string bs)
         {
             SqlConnection conn = new SqlConnection(connecDB.connectionStr);
             SqlCommand cmd = new SqlCommand("getKB_NGAY_KX", conn);
@@ -171,6 +180,8 @@ namespace quanlyphongkham.DAO
             cmd.CommandType = CommandType.StoredProcedure;
             cmd.Parameters.Add("@ngay", SqlDbType.NVarChar, 30);
             cmd.Parameters["@ngay"].Value = tk;
+            cmd.Parameters.Add("@bs", SqlDbType.NVarChar, 10);
+            cmd.Parameters["@bs"].Value = bs;
             conn.Open();
             cmd.ExecuteNonQuery();
             SqlDataAdapter adapter = new SqlDataAdapter(cmd);

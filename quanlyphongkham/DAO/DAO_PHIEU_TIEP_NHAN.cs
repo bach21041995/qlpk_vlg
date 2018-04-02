@@ -133,7 +133,30 @@ namespace quanlyphongkham.DAO
 
         }
 
-        public DataTable getPTN_NGAY(string tk)
+
+        public DataTable getPTN(string tk)
+        {
+            SqlConnection conn = new SqlConnection(connecDB.connectionStr);
+            SqlCommand cmd = new SqlCommand("getPTN", conn);
+            DataTable dt = new DataTable();
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.Parameters.Add("@ngay", SqlDbType.NVarChar, 30);
+            cmd.Parameters["@ngay"].Value = tk;
+            conn.Open();
+            cmd.ExecuteNonQuery();
+            SqlDataAdapter adapter = new SqlDataAdapter(cmd);
+            adapter.Fill(dt);
+            conn.Close();
+            return dt;
+
+            //string query = "select MaHV, TenHV, (CASE GioiTinh when 'true' then N'Nam' else N'Nữ' end) as GioiTinh, NgaySinhHV, DiaChi, DienThoai, a.MaLop, a.MaDT, TenDT, TenLop"
+            //+ " from hocvien a , lop b, doituong c where a.MaLop = b.MaLop and a.MaDT = c.MaDT and " + tk + "";
+            //string query = "select THUOC_ID, THUOC_TEN, THUOC_HDSD, THUOC_CONGDUNG, THUOC_DVT, THUOC_GIA, LT_TEN"
+            //+ " from DM_THUOC a, LOAI_THUOC b where a.LT_ID = b.LT_ID and (lower(THUOC_TEN) like N'%" + tk.ToLower() + "%' or lower(THUOC_ID) like N'%" + tk.ToLower() + "%' or lower(LT_TEN) like N'%" + tk.ToLower() + "%')";
+            //return connecDB.ExecuteQuery(query);
+        }
+
+        public DataTable getPTN_NGAY(string tk, string bs)
         {
             SqlConnection conn = new SqlConnection(connecDB.connectionStr);
             SqlCommand cmd = new SqlCommand("getPTN_NGAY", conn);
@@ -141,6 +164,8 @@ namespace quanlyphongkham.DAO
             cmd.CommandType = CommandType.StoredProcedure;
             cmd.Parameters.Add("@ngay", SqlDbType.NVarChar, 30);
             cmd.Parameters["@ngay"].Value = tk;
+            cmd.Parameters.Add("@bs", SqlDbType.NVarChar, 10);
+            cmd.Parameters["@bs"].Value = bs;
             conn.Open();
             cmd.ExecuteNonQuery();
             SqlDataAdapter adapter = new SqlDataAdapter(cmd);
@@ -185,7 +210,9 @@ namespace quanlyphongkham.DAO
                 //cmd.Parameters["@mathuoc"].Value = mt;
                 cmd.Parameters.Add("@TN_ID", SqlDbType.NVarChar, 15);
                 cmd.Parameters.Add("@NV_ID", SqlDbType.Int);
-                cmd.Parameters.Add("@BN_ID", SqlDbType.Int);
+                cmd.Parameters.Add("@BN_ID", SqlDbType.NVarChar, 10);
+                cmd.Parameters.Add("@BA_ID", SqlDbType.NVarChar, 20);
+                cmd.Parameters.Add("@DVK_ID", SqlDbType.Int);
                 cmd.Parameters.Add("@TN_STT", SqlDbType.Int);
                 cmd.Parameters.Add("@TN_BSKHAM", SqlDbType.Int);
                 cmd.Parameters.Add("@TN_DVKHAM", SqlDbType.NVarChar, 30);
@@ -200,9 +227,12 @@ namespace quanlyphongkham.DAO
                 cmd.Parameters.Add("@TN_CANNANG", SqlDbType.Float);
                 cmd.Parameters.Add("@TN_BMI", SqlDbType.Float);
                 cmd.Parameters.Add("@TN_TRANGTHAI", SqlDbType.Int);
+
                 cmd.Parameters["@TN_ID"].Value = t.Id_tn;
                 cmd.Parameters["@NV_ID"].Value = t.Id_nv;
                 cmd.Parameters["@BN_ID"].Value = t.Id_bn;
+                cmd.Parameters["@BA_ID"].Value = t.Id_ba;
+                cmd.Parameters["@DVK_ID"].Value = t.Id_ba;
                 cmd.Parameters["@TN_STT"].Value = t.Tn_stt;
                 cmd.Parameters["@TN_BSKHAM"].Value = t.Tn_bsk;
                 cmd.Parameters["@TN_DVKHAM"].Value = t.Tn_dvk;
