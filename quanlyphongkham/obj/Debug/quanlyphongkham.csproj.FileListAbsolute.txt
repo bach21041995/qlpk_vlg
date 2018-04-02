@@ -251,12 +251,12 @@ D:\VNPT\HIS OFFLINE\source qlpk\quanlyphongkham\obj\Debug\quanlyphongkham.Report
 D:\VNPT\HIS OFFLINE\source qlpk\quanlyphongkham\obj\Debug\quanlyphongkham.Report.rptToaThuoc.resources
 D:\VNPT\HIS OFFLINE\source qlpk\quanlyphongkham\obj\Debug\quanlyphongkham.csproj.GenerateResource.Cache
 D:\VNPT\HIS OFFLINE\source qlpk\quanlyphongkham\obj\Debug\quanlyphongkham.exe.licenses
-D:\VNPT\HIS OFFLINE\source qlpk\quanlyphongkham\obj\Debug\quanlyphongkham.csprojResolveAssemblyReference.cache
 D:\VNPT\HIS OFFLINE\source qlpk\quanlyphongkham\obj\Debug\quanlyphongkham.FORM.frmDM_NHOMVATTU.resources
 D:\VNPT\HIS OFFLINE\source qlpk\quanlyphongkham\obj\Debug\quanlyphongkham.FORM.frmDM_NUOCSANXUAT.resources
 D:\VNPT\HIS OFFLINE\source qlpk\quanlyphongkham\obj\Debug\quanlyphongkham.FORM.frmDM_KHO.resources
 D:\VNPT\HIS OFFLINE\source qlpk\quanlyphongkham\obj\Debug\quanlyphongkham.FORM.frmDM_NHASANXUAT.resources
 D:\VNPT\HIS OFFLINE\source qlpk\quanlyphongkham\obj\Debug\quanlyphongkham.FORM.frmNHAP_KHO.resources
+<<<<<<< HEAD
 D:\code his-off\qlpk_vlg\quanlyphongkham\obj\Debug\quanlyphongkham.csprojResolveAssemblyReference.cache
 D:\code his-off\qlpk_vlg\quanlyphongkham\obj\Debug\quanlyphongkham.FORM.frmCAN_LAM_SAN.resources
 D:\code his-off\qlpk_vlg\quanlyphongkham\obj\Debug\quanlyphongkham.FORM.frmCHUC_DANH.resources
@@ -473,3 +473,8 @@ D:\code his-off\qlpk_vlg\quanlyphongkham\bin\Debug\es\DevExpress.Diagram.v17.1.C
 D:\code his-off\qlpk_vlg\quanlyphongkham\bin\Debug\ja\DevExpress.Diagram.v17.1.Core.resources.dll
 D:\code his-off\qlpk_vlg\quanlyphongkham\bin\Debug\ru\DevExpress.Diagram.v17.1.Core.resources.dll
 D:\code his-off\qlpk_vlg\quanlyphongkham\obj\Debug\quanlyphongkham.FORM.testbarcode.resources
+=======
+D:\VNPT\HIS OFFLINE\source qlpk\quanlyphongkham\obj\Debug\quanlyphongkham.FORM.frmPHIEU_THANH_LY.resources
+D:\VNPT\HIS OFFLINE\source qlpk\quanlyphongkham\obj\Debug\quanlyphongkham.FORM.frmXUATTHUOC.resources
+D:\VNPT\HIS OFFLINE\source qlpk\quanlyphongkham\obj\Debug\quanlyphongkham.csprojResolveAssemblyReference.cache
+>>>>>>> cc2e60499f8fd5cccc21c4d6feb122f6593d8868

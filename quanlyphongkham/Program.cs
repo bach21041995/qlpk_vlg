@@ -17,7 +17,11 @@ namespace quanlyphongkham
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
+<<<<<<< HEAD
             //Application.Run(new frmMain());
+=======
+            Application.Run(new frmXUATTHUOC());
+>>>>>>> cc2e60499f8fd5cccc21c4d6feb122f6593d8868
 
             //Application.Run(new testbarcode());
             frmDANG_NHAP dn = new frmDANG_NHAP();

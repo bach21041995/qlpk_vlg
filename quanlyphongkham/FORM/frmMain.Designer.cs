@@ -372,7 +372,11 @@
             // 
             this.ribbonPageGroup8.ItemLinks.Add(this.btnNhapKho);
             this.ribbonPageGroup8.Name = "ribbonPageGroup8";
+<<<<<<< HEAD
             this.ribbonPageGroup8.Text = "Dược";
+=======
+            this.ribbonPageGroup8.Text = "Dược - Vật tư";
+>>>>>>> cc2e60499f8fd5cccc21c4d6feb122f6593d8868
             // 
             // ribbonPage3
             // 
