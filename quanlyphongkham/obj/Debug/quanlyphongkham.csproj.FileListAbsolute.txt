@@ -251,9 +251,11 @@ D:\VNPT\HIS OFFLINE\source qlpk\quanlyphongkham\obj\Debug\quanlyphongkham.Report
 D:\VNPT\HIS OFFLINE\source qlpk\quanlyphongkham\obj\Debug\quanlyphongkham.Report.rptToaThuoc.resources
 D:\VNPT\HIS OFFLINE\source qlpk\quanlyphongkham\obj\Debug\quanlyphongkham.csproj.GenerateResource.Cache
 D:\VNPT\HIS OFFLINE\source qlpk\quanlyphongkham\obj\Debug\quanlyphongkham.exe.licenses
-D:\VNPT\HIS OFFLINE\source qlpk\quanlyphongkham\obj\Debug\quanlyphongkham.csprojResolveAssemblyReference.cache
 D:\VNPT\HIS OFFLINE\source qlpk\quanlyphongkham\obj\Debug\quanlyphongkham.FORM.frmDM_NHOMVATTU.resources
 D:\VNPT\HIS OFFLINE\source qlpk\quanlyphongkham\obj\Debug\quanlyphongkham.FORM.frmDM_NUOCSANXUAT.resources
 D:\VNPT\HIS OFFLINE\source qlpk\quanlyphongkham\obj\Debug\quanlyphongkham.FORM.frmDM_KHO.resources
 D:\VNPT\HIS OFFLINE\source qlpk\quanlyphongkham\obj\Debug\quanlyphongkham.FORM.frmDM_NHASANXUAT.resources
 D:\VNPT\HIS OFFLINE\source qlpk\quanlyphongkham\obj\Debug\quanlyphongkham.FORM.frmNHAP_KHO.resources
+D:\VNPT\HIS OFFLINE\source qlpk\quanlyphongkham\obj\Debug\quanlyphongkham.FORM.frmPHIEU_THANH_LY.resources
+D:\VNPT\HIS OFFLINE\source qlpk\quanlyphongkham\obj\Debug\quanlyphongkham.FORM.frmXUATTHUOC.resources
+D:\VNPT\HIS OFFLINE\source qlpk\quanlyphongkham\obj\Debug\quanlyphongkham.csprojResolveAssemblyReference.cache

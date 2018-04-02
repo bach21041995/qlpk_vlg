@@ -26,6 +26,7 @@ namespace quanlyphongkham.FORM
         DAO_NHACUNGCAP daoNCC = new DAO_NHACUNGCAP();
         DAO_DM_THUOC daoThuoc = new DAO_DM_THUOC();
         DAO_CT_PHIEUNHAP  daoCTPN = new DAO_CT_PHIEUNHAP();
+        DAO_KHO_CHI_TIET daoKCT = new DAO_KHO_CHI_TIET();
 
         DataTable dtThuoc = new DataTable();
         bool dieukien = true;
@@ -240,6 +241,19 @@ namespace quanlyphongkham.FORM
             txtTenVT.AutoCompleteCustomSource = daoPNK.getThuoc();
         }
 
+        private KHO_CHI_TIET layTTKHOCT(string id_ctpn)
+        {
+            string vt_id = daoThuoc.getIDTHUOCbyTEN(txtTenVT.Text);
+            string kho = cbbKho.SelectedValue.ToString();
+            DateTime thoidiem = DateTime.Parse(dtpNgayNhap.Text);
+            int solg = int.Parse(txtSoLG.Text);
+            float dongia = float.Parse(txtGiaNhap.Text);
+            string tt = "";
+            string ctpn = id_ctpn;
+            int ngvu = 1;
+            KHO_CHI_TIET kct = new KHO_CHI_TIET(kho, ngvu, vt_id, thoidiem, ctpn, solg, dongia, tt);
+            return kct;
+        }
        
         private void btnThemThuoc_Click(object sender, EventArgs e)
         {
@@ -294,15 +308,24 @@ namespace quanlyphongkham.FORM
                                 }
                                 else
                                 {
+                                   
                                     if (daoCTPN.KiemTraVT(pn_id, vt_id) == 0)
                                     {
-                                        daoCTPN.Insert(ctpn);
+                                        if (daoCTPN.Insert(ctpn))
+                                        {
+                                            KHO_CHI_TIET kct = layTTKHOCT(ctpn_id);
+                                            daoKCT.Insert_KCT(kct);
+                                        }
                                         grcListVT.DataSource = dtThuoc;
                                         resetThuoc();
                                     }
                                     else
                                     {
-                                        daoCTPN.Update(ctpn);
+                                        if (daoCTPN.Update(ctpn))
+                                        {
+                                            KHO_CHI_TIET kct = layTTKHOCT(lbID_CTPN.Text);
+                                            daoKCT.Update_KCT(kct);
+                                        }
                                     }
                                 }
                             }

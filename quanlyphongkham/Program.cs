@@ -17,7 +17,7 @@ namespace quanlyphongkham
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new frmMain());
+            Application.Run(new frmXUATTHUOC());
 
             //frmDANG_NHAP dn = new frmDANG_NHAP();
             //if (dn.ShowDialog() == DialogResult.OK)
