@@ -29,6 +29,22 @@ namespace quanlyphongkham.DAO
            
         }
 
+        public DataTable Get_VT_TheoTen(string id)
+        {
+            SqlConnection con = new SqlConnection(connecDB.connectionStr);
+            SqlCommand cmd = new SqlCommand("get_VatTuTheoTen", con);
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.Parameters.Add("@vt_ten", SqlDbType.NVarChar, 150);
+
+            cmd.Parameters["@vt_ten"].Value = id;
+            con.Open();
+            SqlDataAdapter da = new SqlDataAdapter(cmd);
+            DataTable dt = new DataTable();
+            da.Fill(dt);
+            con.Close();
+            return dt;
+        }
+
 
         public string insertMaThuoc(string malt)
         {

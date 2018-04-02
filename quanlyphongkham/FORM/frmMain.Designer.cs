@@ -372,11 +372,7 @@
             // 
             this.ribbonPageGroup8.ItemLinks.Add(this.btnNhapKho);
             this.ribbonPageGroup8.Name = "ribbonPageGroup8";
-<<<<<<< HEAD
-            this.ribbonPageGroup8.Text = "Dược";
-=======
             this.ribbonPageGroup8.Text = "Dược - Vật tư";
->>>>>>> cc2e60499f8fd5cccc21c4d6feb122f6593d8868
             // 
             // ribbonPage3
             // 
@@ -419,7 +415,7 @@
             // 
             this.xtraTabPage1.Controls.Add(this.panelControl1);
             this.xtraTabPage1.Name = "xtraTabPage1";
-            this.xtraTabPage1.Size = new System.Drawing.Size(871, 386);
+            this.xtraTabPage1.Size = new System.Drawing.Size(869, 386);
             this.xtraTabPage1.Text = "Thông tin nhân viên";
             // 
             // panelControl1
@@ -576,7 +572,6 @@
             this.Controls.Add(this.tabMain);
             this.Controls.Add(this.ribbonControl1);
             this.Controls.Add(this.ribbonStatusBar1);
-            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "frmMain";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Hệ thống quản lý phòng khám";
